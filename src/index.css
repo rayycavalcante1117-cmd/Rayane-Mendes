@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:ital,wght@0,100..900;1,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", ui-serif, Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* The Deep Sanctuary Palette */
+  --color-slate-deep: #0F172A;
+  --color-slate-med: #1E293B;
+  --color-muted-steel: #94A3B8;
+  --color-off-white: #F8FAFC;
+  --color-champagne: #D1BFA7;
+}
+
+/* Base style modifications to support a luxury feeling */
+body {
+  background-color: var(--color-slate-deep);
+  color: var(--color-off-white);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar for premium look */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-slate-deep);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-slate-med);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-muted-steel);
+}
+

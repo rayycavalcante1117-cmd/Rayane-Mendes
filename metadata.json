@@ -1,0 +1,8 @@
+{
+  "name": "Remix: Clínica de Psicologia Andressa Juliana",
+  "description": "Landing page de altíssimo luxo baseada no conceito Quiet Luxury Digital para a clínica de psicologia da Dra. Andressa Juliana na Praia Brava, Itajaí.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
