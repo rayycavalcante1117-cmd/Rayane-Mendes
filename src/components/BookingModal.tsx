@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { X, Compass, Shield, ArrowRight, Check } from "lucide-react";
+import { X, Shield, ArrowRight, Check, Calendar } from "lucide-react";
 
 interface BookingModalProps {
   isOpen: boolean;
@@ -9,7 +9,7 @@ interface BookingModalProps {
 
 export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
   const [step, setStep] = useState(1);
-  const [need, setNeed] = useState<string>("");
+  const [service, setService] = useState<string>("");
   const [modality, setModality] = useState<string>("");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -34,7 +34,7 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
 
   const resetModal = () => {
     setStep(1);
-    setNeed("");
+    setService("");
     setModality("");
     setName("");
     setPhone("");
@@ -49,7 +49,7 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
     <AnimatePresence>
       {isOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-          {/* Backdrop blur overlay */}
+          {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -64,40 +64,56 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="relative w-full max-w-xl bg-slate-deep rounded-3xl overflow-hidden border border-champagne/30 shadow-2xl z-10"
+            className="relative w-full max-w-xl bg-white rounded-3xl overflow-hidden border border-champagne/30 shadow-2xl z-10"
           >
-            {/* Header branding strip */}
-            <div className="px-8 py-5 border-b border-slate-med/50 bg-slate-med/25 flex justify-between items-center">
+            {/* Header */}
+            <div className="px-8 py-5 border-b border-slate-med/50 bg-slate-deep flex justify-between items-center">
               <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-full bg-slate-med text-off-white flex items-center justify-center text-sm font-serif font-bold border border-champagne/30">
-                  <Compass className="w-4 h-4 stroke-[1.5]" />
+                {/* Logo Placeholder */}
+                <div 
+                  style={{
+                    backgroundColor: '#DDD3C7', 
+                    color: '#2D466E', 
+                    display: 'flex',
+                    alignItems: 'center', 
+                    justifyContent: 'center', 
+                    width: '32px', 
+                    height: '32px',
+                    fontWeight: 'bold', 
+                    fontSize: '0.4rem', 
+                    letterSpacing: '1px',
+                    borderRadius: '50%',
+                    border: '1px solid rgba(45, 70, 110, 0.3)'
+                  }}
+                >
+                  LOGO
                 </div>
                 <div>
-                  <span className="font-serif text-sm font-bold tracking-tight text-off-white block uppercase">
+                  <span className="font-serif text-sm font-bold tracking-tight text-white block uppercase">
                     Andressa Juliana
                   </span>
-                  <span className="text-[9px] font-mono tracking-widest text-champagne uppercase block -mt-1 font-bold">
-                    Atendimento Particular Sólido
+                  <span className="text-[9px] font-mono tracking-widest text-slate-med uppercase block -mt-1 font-bold">
+                    Agendamento de Consulta
                   </span>
                 </div>
               </div>
               <button
                 onClick={handleClose}
-                className="p-1.5 rounded-full border border-champagne/20 text-off-white hover:bg-champagne hover:text-slate-deep transition-all cursor-pointer"
+                className="p-1.5 rounded-full border border-champagne/20 text-white hover:bg-champagne hover:text-white transition-all cursor-pointer"
                 aria-label="Fechar"
               >
                 <X className="w-4 h-4" />
               </button>
             </div>
 
-            {/* Stepper indicator index */}
+            {/* Stepper */}
             {step < 4 && (
-              <div className="bg-slate-deep px-8 pt-6 flex items-center gap-3">
+              <div className="bg-slate-deep/5 px-8 pt-6 flex items-center gap-3">
                 {[1, 2, 3].map((num) => (
                   <div key={num} className="flex items-center gap-2">
                     <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-mono font-bold ${
                       step >= num 
-                        ? "bg-champagne text-slate-deep" 
+                        ? "bg-champagne text-white" 
                         : "bg-slate-med/20 text-muted-steel/50 border border-slate-med"
                     }`}>
                       {num}
@@ -111,7 +127,7 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
               </div>
             )}
 
-            {/* Steps Form Copy */}
+            {/* Steps */}
             <div className="p-8">
               <AnimatePresence mode="wait">
                 {step === 1 && (
@@ -123,29 +139,29 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
                     className="space-y-6"
                   >
                     <div>
-                      <h3 className="text-xl font-serif text-off-white mb-1 font-bold">Qual a sua principal necessidade de tratamento?</h3>
+                      <h3 className="text-xl font-serif text-off-white mb-1 font-bold">Qual serviço você procura?</h3>
                       <p className="text-xs text-muted-steel font-sans">
-                        Selecione a especialidade ideal para a sua queixa ou necessidade clínica atual.
+                        Selecione o serviço que melhor atende suas necessidades.
                       </p>
                     </div>
 
                     <div className="space-y-3">
                       {[
-                        { id: "tcc", title: "Ansiedade em Executivos", desc: "Regulação de estresse extrema e mindfulness de alta performance." },
-                        { id: "dbt", title: "Relacionamentos de Alto Valor", desc: "Habilidades assertivas de comunicação e regulação e limites interpessoais." },
-                        { id: "burnout", title: "Esgotamento (Burnout)", desc: "Tratamento para exaustão profissional sustentável e rotina saudável." },
-                        { id: "not_sure", title: "Não sei determinar", desc: "Podemos fazer uma triagem individualizada na primeira sessão." }
+                        { id: "terapia-online", title: "Terapia Online", desc: "Atendimento psicológico individual por videochamada." },
+                        { id: "terapia-presencial", title: "Terapia Presencial", desc: "Consultas presenciais em ambiente acolhedor e sigiloso." },
+                        { id: "supervisao", title: "Supervisão para Psicólogos", desc: "Supervisão clínica online com foco em TCC." },
+                        { id: "cursos", title: "Cursos para Psicólogos", desc: "Formações e capacitações baseadas em evidências." }
                       ].map((opt) => (
                         <button
                           key={opt.id}
                           onClick={() => {
-                            setNeed(opt.title);
+                            setService(opt.title);
                             handleNextStep();
                           }}
                           className={`w-full text-left p-4 rounded-xl border transition-all duration-300 flex justify-between items-center group cursor-pointer ${
-                            need === opt.title 
-                              ? "bg-slate-med text-off-white border-champagne" 
-                              : "bg-slate-med/15 text-muted-steel border-slate-med/50 hover:border-champagne hover:bg-slate-med/30"
+                            service === opt.title 
+                              ? "bg-champagne/10 text-off-white border-champagne" 
+                              : "bg-slate-deep/5 text-muted-steel border-slate-med/50 hover:border-champagne hover:bg-champagne/5"
                           }`}
                         >
                           <div>
@@ -168,16 +184,16 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
                     className="space-y-6"
                   >
                     <div>
-                      <h3 className="text-xl font-serif text-off-white mb-1 font-bold">Qual formato de atendimento você prefere?</h3>
+                      <h3 className="text-xl font-serif text-off-white mb-1 font-bold">Qual modalidade você prefere?</h3>
                       <p className="text-xs text-muted-steel font-sans">
-                        Nosso consultório está localizado no Edifício Riviera Concept na Praia Brava, Itajaí.
+                        Escolha entre atendimento online ou presencial.
                       </p>
                     </div>
 
                     <div className="space-y-3">
                       {[
-                        { id: "presential", title: "Atendimento Presencial", desc: "No Edifício Riviera Concept, com total discrição e conforto acústico." },
-                        { id: "online", title: "Atendimento de Alta Definição (Online)", desc: "Videoconferência criptografada sob total confidencialidade." }
+                        { id: "online", title: "Atendimento Online", desc: "Videochamada com flexibilidade de horário e conforto da sua casa." },
+                        { id: "presencial", title: "Atendimento Presencial", desc: "Ambiente acolhedor e sigiloso para seu processo terapêutico." }
                       ].map((opt) => (
                         <button
                           key={opt.id}
@@ -187,8 +203,8 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
                           }}
                           className={`w-full text-left p-5 rounded-xl border transition-all duration-300 flex justify-between items-center group cursor-pointer ${
                             modality === opt.title 
-                              ? "bg-slate-med text-off-white border-champagne" 
-                              : "bg-slate-med/15 text-muted-steel border-slate-med/50 hover:border-champagne hover:bg-slate-med/30"
+                              ? "bg-champagne/10 text-off-white border-champagne" 
+                              : "bg-slate-deep/5 text-muted-steel border-slate-med/50 hover:border-champagne hover:bg-champagne/5"
                           }`}
                         >
                           <div>
@@ -203,7 +219,7 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
                     <div className="flex justify-between pt-4">
                       <button 
                         onClick={handlePrevStep}
-                        className="text-xs font-mono uppercase tracking-widest text-muted-steel hover:text-off-white underline cursor-pointer"
+                        className="text-xs font-mono uppercase tracking-widest text-muted-steel hover:text-champagne underline cursor-pointer"
                       >
                         Voltar
                       </button>
@@ -223,7 +239,7 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
                     <div>
                       <h3 className="text-xl font-serif text-off-white mb-1 font-bold">Para finalizarmos, informe seus dados</h3>
                       <p className="text-xs text-muted-steel font-sans">
-                        Seus dados serão analisados diretamente pela Doutora Andressa com absoluto sigilo.
+                        Seus dados serão tratados com total sigilo e confidencialidade.
                       </p>
                     </div>
 
@@ -235,7 +251,7 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
                           required
                           value={name}
                           onChange={(e) => setName(e.target.value)}
-                          className="w-full px-4 py-3 rounded-xl bg-slate-deep border border-slate-med text-off-white text-xs sm:text-sm focus:outline-none focus:border-champagne placeholder-muted-steel/30"
+                          className="w-full px-4 py-3 rounded-xl bg-slate-deep border border-slate-med text-white text-xs sm:text-sm focus:outline-none focus:border-champagne placeholder-muted-steel/30"
                           placeholder="Digite seu nome"
                         />
                       </div>
@@ -247,19 +263,19 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
                           required
                           value={phone}
                           onChange={(e) => setPhone(e.target.value)}
-                          className="w-full px-4 py-3 rounded-xl bg-slate-deep border border-slate-med text-off-white text-xs sm:text-sm focus:outline-none focus:border-champagne placeholder-muted-steel/30"
-                          placeholder="(47) 99999-9999"
+                          className="w-full px-4 py-3 rounded-xl bg-slate-deep border border-slate-med text-white text-xs sm:text-sm focus:outline-none focus:border-champagne placeholder-muted-steel/30"
+                          placeholder="(00) 00000-0000"
                         />
                       </div>
                       
                       {/* Recap Box */}
-                      <div className="p-4 rounded-xl bg-slate-med/10 border border-slate-med/50 space-y-1 text-xs text-muted-steel">
+                      <div className="p-4 rounded-xl bg-slate-deep/10 border border-slate-med/50 space-y-1 text-xs text-muted-steel">
                         <div className="flex justify-between">
-                          <span className="font-mono uppercase text-[9px] text-champagne/70">Especialidade:</span>
-                          <span className="font-serif font-bold text-off-white">{need}</span>
+                          <span className="font-mono uppercase text-[9px] text-champagne/70">Serviço:</span>
+                          <span className="font-serif font-bold text-off-white">{service}</span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="font-mono uppercase text-[9px] text-champagne/70">Formato:</span>
+                          <span className="font-mono uppercase text-[9px] text-champagne/70">Modalidade:</span>
                           <span className="font-serif font-bold text-off-white">{modality}</span>
                         </div>
                       </div>
@@ -269,7 +285,7 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
                       <button
                         type="button"
                         onClick={handlePrevStep}
-                        className="text-xs font-mono uppercase tracking-widest text-muted-steel hover:text-off-white underline cursor-pointer"
+                        className="text-xs font-mono uppercase tracking-widest text-muted-steel hover:text-champagne underline cursor-pointer"
                       >
                         Voltar
                       </button>
@@ -277,9 +293,9 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
                       <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="px-6 py-3 bg-gradient-to-r from-slate-950 to-slate-900 text-off-white border border-champagne hover:text-champagne hover:shadow-2xl rounded-xl text-xs font-mono tracking-widest uppercase transition-all duration-300 font-bold cursor-pointer disabled:opacity-50"
+                        className="px-6 py-3 bg-champagne text-white border border-champagne hover:bg-champagne/90 hover:shadow-2xl rounded-xl text-xs font-mono tracking-widest uppercase transition-all duration-300 font-bold cursor-pointer disabled:opacity-50"
                       >
-                        {isSubmitting ? "Cadastrando..." : "Confirmar Agendamento"}
+                        {isSubmitting ? "Enviando..." : "Confirmar Agendamento"}
                       </button>
                     </div>
                   </motion.form>
@@ -297,15 +313,15 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
                     </div>
 
                     <div className="space-y-2">
-                      <h3 className="text-2xl font-serif text-off-white font-bold">Solicitação Pré-Confirmada</h3>
+                      <h3 className="text-2xl font-serif text-off-white font-bold">Solicitação Enviada!</h3>
                       <p className="text-xs text-muted-steel font-sans leading-relaxed max-w-sm mx-auto">
-                        Iniciando análise confidencial. Nossa recepção entrará em contato via WhatsApp sob estritos parâmetros éticos e sigilosos para definir data e hora.
+                        Obrigada pelo seu interesse! Entrarei em contato pelo WhatsApp informado para confirmar data e horário da sua consulta.
                       </p>
                     </div>
 
                     <button
                       onClick={handleClose}
-                      className="w-full py-4 bg-gradient-to-r from-slate-900 to-slate-800 border border-champagne/30 text-off-white hover:text-champagne transition-all duration-300 rounded-xl text-xs font-mono tracking-widest uppercase font-bold cursor-pointer"
+                      className="w-full py-4 bg-champagne border border-champagne text-white hover:bg-champagne/90 transition-all duration-300 rounded-xl text-xs font-mono tracking-widest uppercase font-bold cursor-pointer"
                     >
                       Entendido
                     </button>
@@ -314,10 +330,10 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
               </AnimatePresence>
             </div>
             
-            {/* Modal Bottom Strip decoration */}
-            <div className="bg-slate-med/20 px-8 py-4 border-t border-slate-med/50 flex items-center gap-1.5 text-[9px] font-mono text-muted-steel/50 uppercase tracking-widest justify-center">
+            {/* Footer */}
+            <div className="bg-slate-deep/5 px-8 py-4 border-t border-slate-med/50 flex items-center gap-1.5 text-[9px] font-mono text-muted-steel/50 uppercase tracking-widest justify-center">
               <Shield className="w-3.5 h-3.5 text-champagne" />
-              <span>Transmissão em conformidade ética absoluta de saúde e controle de dados</span>
+              <span>Seus dados são tratados com sigilo e confidencialidade</span>
             </div>
           </motion.div>
         </div>

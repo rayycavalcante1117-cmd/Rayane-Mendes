@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Menu, X, Compass, Calendar, Sparkles } from "lucide-react";
+import { Menu, X, Calendar, Sparkles } from "lucide-react";
 
 interface HeaderProps {
   onOpenBooking: () => void;
@@ -12,25 +12,21 @@ export default function Header({ onOpenBooking }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  useEffect(() => {
+  useState(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       
-      // Determine scrolled status for styling
       if (currentScrollY > 20) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
       }
 
-      // Determine visibility direction
       if (currentScrollY < 50) {
         setIsVisible(true);
       } else if (currentScrollY > lastScrollY) {
-        // Scrolling down
         setIsVisible(false);
       } else {
-        // Scrolling up
         setIsVisible(true);
       }
       
@@ -39,7 +35,7 @@ export default function Header({ onOpenBooking }: HeaderProps) {
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+  });
 
   const scrollToSection = (id: string) => {
     setIsMobileMenuOpen(false);
@@ -54,10 +50,10 @@ export default function Header({ onOpenBooking }: HeaderProps) {
 
   const navLinks = [
     { name: "Início", target: "home" },
-    { name: "Metodologia", target: "metodologia" },
+    { name: "Serviços", target: "servicos" },
     { name: "Sobre", target: "sobre" },
     { name: "Depoimentos", target: "depoimentos" },
-    { name: "Localização", target: "contato" },
+    { name: "Contato", target: "contato" },
   ];
 
   return (
@@ -72,25 +68,41 @@ export default function Header({ onOpenBooking }: HeaderProps) {
         transition={{ duration: 0.35, ease: "easeOut" }}
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
           isScrolled 
-            ? "mx-4 mt-4 rounded-2xl bg-slate-deep/90 backdrop-blur-md shadow-2xl border border-champagne/25 py-3 px-6" 
+            ? "mx-4 mt-4 rounded-2xl bg-white/90 backdrop-blur-md shadow-2xl border border-champagne/25 py-3 px-6" 
             : "bg-transparent py-6 px-8 border-b border-slate-med/40"
         }`}
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          {/* Logo / Monogram */}
+          {/* Logo Placeholder */}
           <div 
             onClick={() => scrollToSection("home")}
             className="flex items-center gap-3 cursor-pointer group"
           >
-            <div className="w-10 h-10 rounded-full bg-slate-med text-off-white border border-champagne/30 flex items-center justify-center font-serif text-lg font-bold group-hover:bg-champagne group-hover:text-slate-deep transition-all duration-300">
-              <Compass className="w-5 h-5 stroke-[1.5]" />
+            {/* Logo Placeholder */}
+            <div 
+              style={{
+                backgroundColor: '#DDD3C7', 
+                color: '#2D466E', 
+                display: 'flex',
+                alignItems: 'center', 
+                justifyContent: 'center', 
+                width: '40px', 
+                height: '40px',
+                fontWeight: 'bold', 
+                fontSize: '0.5rem', 
+                letterSpacing: '1px',
+                borderRadius: '50%',
+                border: '1px solid rgba(45, 70, 110, 0.3)'
+              }}
+            >
+              LOGO
             </div>
             <div>
               <span className="font-serif text-lg md:text-xl font-bold tracking-tight text-off-white uppercase block leading-none">
                 Andressa Juliana
               </span>
               <span className="text-[9px] md:text-[10px] font-mono tracking-widest text-muted-steel uppercase block mt-1 font-semibold">
-                Psicologia Clínica & Supervisão
+                Psicóloga Clínica • CRP-12/19715
               </span>
             </div>
           </div>
@@ -113,10 +125,10 @@ export default function Header({ onOpenBooking }: HeaderProps) {
           <div className="hidden md:flex items-center gap-4">
             <button
               onClick={onOpenBooking}
-              className="px-5 py-2.5 rounded-full border border-champagne/50 text-off-white hover:bg-champagne hover:text-slate-deep text-xs font-mono tracking-widest uppercase transition-all duration-300 flex items-center gap-1.5 cursor-pointer font-bold"
+              className="px-5 py-2.5 rounded-full bg-champagne text-white hover:bg-champagne/90 text-xs font-mono tracking-widest uppercase transition-all duration-300 flex items-center gap-1.5 cursor-pointer font-bold"
             >
               <Calendar className="w-3.5 h-3.5" />
-              Agendar Particular
+              Agendar Consulta
             </button>
           </div>
 
@@ -148,7 +160,7 @@ export default function Header({ onOpenBooking }: HeaderProps) {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed top-20 left-4 right-4 z-30 bg-slate-deep border border-champagne/35 rounded-2xl p-6 shadow-2xl backdrop-blur-lg md:hidden flex flex-col gap-6"
+            className="fixed top-20 left-4 right-4 z-30 bg-white border border-champagne/35 rounded-2xl p-6 shadow-2xl backdrop-blur-lg md:hidden flex flex-col gap-6"
           >
             <div className="flex flex-col gap-4">
               {navLinks.map((link) => (
@@ -167,10 +179,10 @@ export default function Header({ onOpenBooking }: HeaderProps) {
                 setIsMobileMenuOpen(false);
                 onOpenBooking();
               }}
-              className="w-full py-4 text-center rounded-xl bg-slate-med text-off-white border border-champagne/40 text-xs font-mono tracking-widest uppercase hover:bg-champagne hover:text-slate-deep transition-all duration-300 shadow-lg flex items-center justify-center gap-2 cursor-pointer"
+              className="w-full py-4 text-center rounded-xl bg-champagne text-white border border-champagne text-xs font-mono tracking-widest uppercase hover:bg-champagne/90 transition-all duration-300 shadow-lg flex items-center justify-center gap-2 cursor-pointer"
             >
               <Calendar className="w-4 h-4" />
-              Agendar Consulta Particular
+              Agendar minha consulta
             </button>
           </motion.div>
         )}

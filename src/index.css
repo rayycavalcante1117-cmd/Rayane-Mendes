@@ -6,15 +6,15 @@
   --font-serif: "Playfair Display", ui-serif, Georgia, serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 
-  /* The Deep Sanctuary Palette */
-  --color-slate-deep: #0F172A;
-  --color-slate-med: #1E293B;
-  --color-muted-steel: #94A3B8;
-  --color-off-white: #F8FAFC;
-  --color-champagne: #D1BFA7;
+  /* Paleta Andressa Juliana - Psicologia Clínica */
+  --color-slate-deep: #DDD3C7;      /* Bege aconchegante - fundo principal */
+  --color-slate-med: #C5B9AC;       /* Bege médio - secundário */
+  --color-muted-steel: #6B6B6B;     /* Cinza médio - texto suave */
+  --color-off-white: #2C2C2C;       /* Quase preto - texto principal */
+  --color-champagne: #2D466E;       /* Azul profissional - destaques/botões */
 }
 
-/* Base style modifications to support a luxury feeling */
+/* Base style modifications to support a welcoming feeling */
 body {
   background-color: var(--color-slate-deep);
   color: var(--color-off-white);
@@ -36,4 +36,3 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-muted-steel);
 }
-

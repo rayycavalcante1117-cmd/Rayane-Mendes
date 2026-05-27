@@ -1,51 +1,58 @@
 import { motion } from "motion/react";
-import { Brain, Sparkles, AlertCircle, Heart, ChevronRight, Activity, Zap } from "lucide-react";
-import { MethodologyCard } from "../types";
+import { Monitor, Building2, Users, GraduationCap, ChevronRight, Activity } from "lucide-react";
+
+interface ServiceCard {
+  title: string;
+  subtitle: string;
+  description: string;
+  iconName: string;
+  tags: string[];
+}
 
 export default function Methodology() {
-  const cards: MethodologyCard[] = [
+  const cards: ServiceCard[] = [
     {
-      title: "Ansiedade em Executivos",
-      subtitle: "Alta Performance & Tomada de Decisão",
-      description: "Regulação sistemática do estresse, técnicas de coping de alto rendimento e mindfulness aplicados à gestão de decisões sob extrema responsabilidade corporativa.",
-      iconName: "brain",
-      tags: ["Clareza Estratégica", "Sintomas Físicos", "Prevenção de Pânico", "Liderança Lúcida"]
+      title: "Terapia Online",
+      subtitle: "Flexibilidade & Conforto",
+      description: "Atendimento psicológico individual pela plataforma online, com flexibilidade de horário e conforto da sua casa.",
+      iconName: "monitor",
+      tags: ["Videochamada", "Flexível", "Seguro", "Prático"]
     },
     {
-      title: "Relacionamentos de Alto Valor",
-      subtitle: "Inteligência Interpessoal & Conexões Saudáveis",
-      description: "Desenvolvimento de habilidades assertivas de comunicação e dinâmicas afetivas blindadas por preceitos terapêuticos baseados em evidência científica.",
-      iconName: "heart",
-      tags: ["Resolução Dialética", "Efetividade Interpessoal", "Vínculo Seguro", "Limites Saudáveis"]
+      title: "Terapia Presencial",
+      subtitle: "Ambiente Acolhedor",
+      description: "Consultas presenciais em ambiente acolhedor e sigiloso para o seu processo terapêutico.",
+      iconName: "building",
+      tags: ["Consultório", "Privacidade", "Conforto", "Acolhimento"]
     },
     {
-      title: "Inteligência Emocional",
-      subtitle: "Modular Autocontrole & Gestão da Crise",
-      description: "Ciência comportamental aplicada para domar impulsividade, regular flutuações e construir flexibilidade psicológica de forma orientada a objetivos de vida concretos.",
-      iconName: "sparkles",
-      tags: ["Regulação Emocional", "Modulação de Coping", "Autogestão Crítica", "Habilidades DBT"]
+      title: "Supervisão para Psicólogos",
+      subtitle: "Foco em TCC",
+      description: "Supervisão clínica online com foco na Terapia Cognitivo-Comportamental para psicólogos clínicos.",
+      iconName: "users",
+      tags: ["Online", "TCC", "Prática Clínica", "Desenvolvimento"]
     },
     {
-      title: "Esgotamento (Burnout)",
-      subtitle: "Reabilitação Terapêutica & Equilíbrio Sustentável",
-      description: "Processo estruturado de tratamento para estresse laboral crônico, focado na reestruturação da rotina, assertividade profissional e reatribuição de sentido de vida.",
-      iconName: "zap",
-      tags: ["Reabilitação Ativa", "Limites Profissionais", "Gerenciamento de Energia", "Bem-estar Físico"]
+      title: "Cursos para Psicólogos",
+      subtitle: "Formação Baseada em Evidências",
+      description: "Formações e capacitações para psicólogos e estudantes de Psicologia com base em evidências.",
+      iconName: "graduation",
+      tags: ["Capacitação", "Evidências", "Atualização", "Certificação"]
     }
   ];
 
   const getIcon = (name: string) => {
     switch (name) {
-      case "brain":
-        return <Brain className="w-5 h-5 text-champagne" />;
-      case "heart":
-        return <Heart className="w-5 h-5 text-champagne" />;
-      case "sparkles":
-        return <Sparkles className="w-5 h-5 text-champagne" />;
-      case "zap":
-        return <Zap className="w-5 h-5 text-champagne" />;
+      case "monitor":
+        return <Monitor className="w-5 h-5 text-champagne" />;
+      case "building":
+        return <Building2 className="w-5 h-5 text-champagne" />;
+      case "users":
+        return <Users className="w-5 h-5 text-champagne" />;
+      case "graduation":
+        return <GraduationCap className="w-5 h-5 text-champagne" />;
       default:
-        return <Brain className="w-5 h-5 text-champagne" />;
+        return <Monitor className="w-5 h-5 text-champagne" />;
     }
   };
 
@@ -69,14 +76,14 @@ export default function Methodology() {
   };
 
   return (
-    <section id="metodologia" className="py-24 bg-slate-deep border-t border-slate-med/40 relative">
-      {/* Decorative vertical lines representing structural rigor */}
+    <section id="servicos" className="py-24 bg-slate-deep border-t border-slate-med/40 relative">
+      {/* Decorative vertical lines */}
       <div className="absolute inset-y-0 left-12 w-[1px] bg-slate-med/20 pointer-events-none hidden md:block" />
       <div className="absolute inset-y-0 right-12 w-[1px] bg-slate-med/20 pointer-events-none hidden md:block" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-8 relative z-10">
         
-        {/* Editorial Title */}
+        {/* Title */}
         <div className="text-center max-w-2xl mx-auto mb-20">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
@@ -86,7 +93,7 @@ export default function Methodology() {
             className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-champagne/35 bg-slate-med/60 mb-4"
           >
             <Activity className="w-3.5 h-3.5 text-champagne" />
-            <span className="text-[10px] font-mono tracking-widest text-champagne uppercase font-bold">Especialidades Clínicas de Alto Padrão</span>
+            <span className="text-[10px] font-mono tracking-widest text-champagne uppercase font-bold">Serviços</span>
           </motion.div>
           
           <motion.h2 
@@ -96,7 +103,7 @@ export default function Methodology() {
             transition={{ duration: 0.8 }}
             className="text-3xl md:text-4xl lg:text-5xl font-serif text-off-white tracking-tight"
           >
-            Abordagens Estruturadas & Ciência de Elite
+            Como posso te ajudar
           </motion.h2>
           
           <motion.p 
@@ -106,11 +113,11 @@ export default function Methodology() {
             transition={{ duration: 0.8, delay: 0.15 }}
             className="text-muted-steel font-sans mt-4 max-w-xl mx-auto text-sm md:text-base leading-relaxed"
           >
-            Tratamentos baseados em evidência científica com foco em reestruturação narrativa de alta exigência. Sem teorias vagas, orientado para reatribuição existencial e excelência.
+            Atendimento psicológico baseado em evidências científicas para adultos, além de supervisão e formação para profissionais de Psicologia.
           </motion.p>
         </div>
 
-        {/* Column Grid with a clean 4-card layout (2x2 on medium, 4x1 on desktop, etc) */}
+        {/* Services Grid */}
         <motion.div 
           variants={containerVariants}
           initial="hidden"
@@ -127,13 +134,13 @@ export default function Methodology() {
                 scale: 1.02,
                 transition: { duration: 0.35, ease: "easeOut" } 
               }}
-              className="relative p-7 rounded-2xl bg-slate-med/30 border border-slate-med/60 hover:border-champagne/45 transition-all duration-300 shadow-xl flex flex-col justify-between group overflow-hidden"
+              className="relative p-7 rounded-2xl bg-white/80 border border-slate-med/60 hover:border-champagne/45 transition-all duration-300 shadow-xl flex flex-col justify-between group overflow-hidden"
             >
-              {/* Decorative Card Header Accent Bar representing Quiet Luxury gold aspect */}
+              {/* Card Header Accent Bar */}
               <div className="absolute top-0 left-0 right-0 h-[3px] bg-slate-med/50 group-hover:bg-champagne transition-colors duration-300" />
               
               <div>
-                {/* Meta details */}
+                {/* Icon and number */}
                 <div className="flex justify-between items-center mb-6">
                   <div className="p-2.5 bg-slate-deep rounded-xl border border-slate-med group-hover:bg-champagne/10 transition-colors duration-300">
                     {getIcon(card.iconName)}
@@ -155,7 +162,7 @@ export default function Methodology() {
               </div>
 
               <div>
-                {/* Custom Tags */}
+                {/* Tags */}
                 <div className="flex flex-wrap gap-1.5 pt-4 border-t border-slate-med/50">
                   {card.tags.map((tag) => (
                     <span 
@@ -167,9 +174,9 @@ export default function Methodology() {
                   ))}
                 </div>
 
-                {/* Saber Mais accent */}
+                {/* CTA */}
                 <div className="mt-5 flex items-center gap-1.5 text-[10px] font-mono tracking-widest uppercase text-muted-steel/60 group-hover:text-champagne transition-all">
-                  <span>Tratamento premium</span>
+                  <span>Saiba mais</span>
                   <ChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                 </div>
               </div>
@@ -177,30 +184,30 @@ export default function Methodology() {
           ))}
         </motion.div>
 
-        {/* Sub-section highlight box: The Core Philosophy */}
+        {/* Bottom Banner */}
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="mt-16 p-8 md:p-12 rounded-2xl bg-gradient-to-r from-slate-med to-slate-deep relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8 border border-champagne/20 shadow-2xl"
+          className="mt-16 p-8 md:p-12 rounded-2xl bg-white/60 relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8 border border-champagne/20 shadow-2xl"
         >
-          {/* Wave visual lines dots background */}
+          {/* Background pattern */}
           <div className="absolute inset-0 opacity-5 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle, var(--color-champagne) 1px, transparent 1px)', backgroundSize: '16px 16px' }} />
           
           <div className="max-w-2xl text-left relative z-10">
-            <span className="text-xs font-mono tracking-widest text-champagne uppercase mb-2 block font-bold">Doutrina & Sigilo</span>
+            <span className="text-xs font-mono tracking-widest text-champagne uppercase mb-2 block font-bold">Diferencial</span>
             <h3 className="text-2xl font-serif text-off-white leading-snug">
-              Tratamento psicoterápico estritamente confidencial direcionado a tomadores de decisão e executivos de alta performance.
+              Aprenda ferramentas e estratégias para alcançar uma melhora nos seus sintomas.
             </h3>
             <p className="text-sm font-sans text-muted-steel mt-2 leading-relaxed">
-              Respeito absoluto à ética clínico-científica e amparo ético rigoroso. Sua privacidade intelectual e estabilidade existencial protegidas em cada nível de regulação de humor e autoconhecimento.
+              Desenvolva novas habilidades e adquira autonomia através da Terapia Cognitivo-Comportamental baseada em evidências científicas.
             </p>
           </div>
 
           <div className="flex-shrink-0 relative z-10">
-            <div className="w-16 h-16 rounded-full bg-slate-deep text-champagne flex items-center justify-center border border-champagne/30 shadow-2xl">
-              <AlertCircle className="w-7 h-7 stroke-[1.5]" />
+            <div className="w-16 h-16 rounded-full bg-champagne text-white flex items-center justify-center border border-champagne/30 shadow-2xl">
+              <Activity className="w-7 h-7 stroke-[1.5]" />
             </div>
           </div>
         </motion.div>
