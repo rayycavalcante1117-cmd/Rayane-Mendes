@@ -56,7 +56,7 @@ export default function Methodology() {
   };
 
   return (
-    <section id="servicos" className="py-24 bg-beige-warm relative">
+    <section id="servicos" className="py-24 bg-beige-warm relative content-visibility-auto">
       {/* Decorative vertical lines */}
       <div className="absolute inset-y-0 left-12 w-[1px] bg-slate-med/10 pointer-events-none hidden md:block" />
       <div className="absolute inset-y-0 right-12 w-[1px] bg-slate-med/10 pointer-events-none hidden md:block" />

@@ -1,11 +1,11 @@
-import { useRef, useEffect, memo } from "react";
+import { useRef, useEffect, memo, useCallback } from "react";
 import { Quote, Star } from "lucide-react";
 
 // Memoized testimonial card component
 const TestimonialCard = memo(({ testimonial, index }: { testimonial: typeof testimonials[0], index: number }) => (
   <div
     key={`${testimonial.id}-${index}`}
-    className="flex-shrink-0 w-[350px] md:w-[400px] p-6 rounded-2xl bg-white border border-beige-warm/50 shadow-lg hover:shadow-xl transition-shadow duration-300"
+    className="flex-shrink-0 w-[350px] md:w-[400px] p-6 rounded-2xl bg-white border border-beige-warm/50 shadow-lg hover:shadow-xl transition-shadow duration-300 gpu-accelerated"
   >
     {/* Quote icon */}
     <div className="flex items-center justify-between mb-4">
@@ -104,48 +104,57 @@ export default function SocialProof() {
   const duplicatedTestimonials = [...testimonials, ...testimonials];
 
   const scrollRef = useRef<HTMLDivElement>(null);
+  const animationId = useRef<number>(0);
+  const scrollPosition = useRef(0);
+  const isPaused = useRef(false);
+
+  const animate = useCallback(() => {
+    const scrollContainer = scrollRef.current;
+    if (!scrollContainer || isPaused.current) {
+      animationId.current = requestAnimationFrame(animate);
+      return;
+    }
+
+    scrollPosition.current += 0.5;
+    
+    // Reset position when we've scrolled half (the first set of testimonials)
+    const halfWidth = scrollContainer.scrollWidth / 2;
+    if (scrollPosition.current >= halfWidth) {
+      scrollPosition.current = 0;
+    }
+    
+    // Use transform instead of scrollLeft for better performance
+    scrollContainer.style.transform = `translateX(-${scrollPosition.current}px)`;
+    animationId.current = requestAnimationFrame(animate);
+  }, []);
 
   useEffect(() => {
-    const scrollContainer = scrollRef.current;
-    if (!scrollContainer) return;
-
-    let animationId: number;
-    let scrollPosition = 0;
-    const scrollSpeed = 0.5;
-
-    const animate = () => {
-      scrollPosition += scrollSpeed;
-      
-      // Reset position when we've scrolled half (the first set of testimonials)
-      const halfWidth = scrollContainer.scrollWidth / 2;
-      if (scrollPosition >= halfWidth) {
-        scrollPosition = 0;
-      }
-      
-      scrollContainer.scrollLeft = scrollPosition;
-      animationId = requestAnimationFrame(animate);
+    // Use requestIdleCallback to defer animation start
+    const startAnimation = () => {
+      animationId.current = requestAnimationFrame(animate);
     };
 
-    animationId = requestAnimationFrame(animate);
-
-    // Pause on hover
-    const handleMouseEnter = () => cancelAnimationFrame(animationId);
-    const handleMouseLeave = () => {
-      animationId = requestAnimationFrame(animate);
-    };
-
-    scrollContainer.addEventListener('mouseenter', handleMouseEnter);
-    scrollContainer.addEventListener('mouseleave', handleMouseLeave);
+    if ('requestIdleCallback' in window) {
+      (window as Window).requestIdleCallback(startAnimation, { timeout: 1000 });
+    } else {
+      setTimeout(startAnimation, 100);
+    }
 
     return () => {
-      cancelAnimationFrame(animationId);
-      scrollContainer.removeEventListener('mouseenter', handleMouseEnter);
-      scrollContainer.removeEventListener('mouseleave', handleMouseLeave);
+      cancelAnimationFrame(animationId.current);
     };
+  }, [animate]);
+
+  const handleMouseEnter = useCallback(() => {
+    isPaused.current = true;
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    isPaused.current = false;
   }, []);
 
   return (
-    <section id="depoimentos" className="py-24 bg-off-white relative overflow-hidden">
+    <section id="depoimentos" className="py-24 bg-off-white relative overflow-hidden content-visibility-auto">
       {/* Subtle background accent */}
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-slate-deep via-slate-med to-muted-steel" />
       
@@ -164,11 +173,13 @@ export default function SocialProof() {
 
       </div>
 
-      {/* Infinite Carousel */}
+      {/* Infinite Carousel - using transform for GPU acceleration */}
       <div 
         ref={scrollRef}
-        className="flex gap-6 overflow-x-hidden pb-4 cursor-grab active:cursor-grabbing"
-        style={{ scrollBehavior: 'auto' }}
+        className="flex gap-6 pb-4 cursor-grab active:cursor-grabbing will-change-transform"
+        style={{ width: 'fit-content' }}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
       >
         {duplicatedTestimonials.map((testimonial, index) => (
           <TestimonialCard key={`${testimonial.id}-${index}`} testimonial={testimonial} index={index} />

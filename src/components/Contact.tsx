@@ -72,7 +72,7 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contato" className="py-24 bg-beige-cream relative">
+    <section id="contato" className="py-24 bg-beige-cream relative content-visibility-auto">
       <div className="max-w-7xl mx-auto px-6 md:px-8">
         
         {/* Title */}

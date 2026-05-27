@@ -24,7 +24,7 @@ export default function About({ portraitPath }: AboutProps) {
   ];
 
   return (
-    <section id="sobre" className="py-24 bg-white relative overflow-hidden">
+    <section id="sobre" className="py-24 bg-white relative overflow-hidden content-visibility-auto">
       {/* Top accent line */}
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-beige-warm via-slate-med to-beige-warm" />
 

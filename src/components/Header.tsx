@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { Menu, X, Calendar } from "lucide-react";
 
 interface HeaderProps {
@@ -7,34 +7,39 @@ interface HeaderProps {
 
 export default function Header({ onOpenBooking }: HeaderProps) {
   const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  
+  // Use refs to batch DOM reads and avoid forced reflow
+  const lastScrollY = useRef(0);
+  const ticking = useRef(false);
+
+  const updateHeader = useCallback(() => {
+    const currentScrollY = window.scrollY;
+    
+    // Batch all state updates together
+    const shouldBeScrolled = currentScrollY > 20;
+    const shouldBeVisible = currentScrollY < 50 || currentScrollY < lastScrollY.current;
+    
+    setIsScrolled(shouldBeScrolled);
+    setIsVisible(shouldBeVisible);
+    
+    lastScrollY.current = currentScrollY;
+    ticking.current = false;
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      
-      if (currentScrollY > 20) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
+      // Use requestAnimationFrame to batch DOM reads
+      if (!ticking.current) {
+        requestAnimationFrame(updateHeader);
+        ticking.current = true;
       }
-
-      if (currentScrollY < 50) {
-        setIsVisible(true);
-      } else if (currentScrollY > lastScrollY) {
-        setIsVisible(false);
-      } else {
-        setIsVisible(true);
-      }
-      
-      setLastScrollY(currentScrollY);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+  }, [updateHeader]);
 
   const scrollToSection = (id: string) => {
     setIsMobileMenuOpen(false);
