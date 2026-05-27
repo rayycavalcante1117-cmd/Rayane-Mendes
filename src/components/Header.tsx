@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { Menu, X, Calendar } from "lucide-react";
 
 interface HeaderProps {
@@ -8,34 +7,39 @@ interface HeaderProps {
 
 export default function Header({ onOpenBooking }: HeaderProps) {
   const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  
+  // Use refs to batch DOM reads and avoid forced reflow
+  const lastScrollY = useRef(0);
+  const ticking = useRef(false);
 
-  useState(() => {
+  const updateHeader = useCallback(() => {
+    const currentScrollY = window.scrollY;
+    
+    // Batch all state updates together
+    const shouldBeScrolled = currentScrollY > 20;
+    const shouldBeVisible = currentScrollY < 50 || currentScrollY < lastScrollY.current;
+    
+    setIsScrolled(shouldBeScrolled);
+    setIsVisible(shouldBeVisible);
+    
+    lastScrollY.current = currentScrollY;
+    ticking.current = false;
+  }, []);
+
+  useEffect(() => {
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      
-      if (currentScrollY > 20) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
+      // Use requestAnimationFrame to batch DOM reads
+      if (!ticking.current) {
+        requestAnimationFrame(updateHeader);
+        ticking.current = true;
       }
-
-      if (currentScrollY < 50) {
-        setIsVisible(true);
-      } else if (currentScrollY > lastScrollY) {
-        setIsVisible(false);
-      } else {
-        setIsVisible(true);
-      }
-      
-      setLastScrollY(currentScrollY);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  });
+  }, [updateHeader]);
 
   const scrollToSection = (id: string) => {
     setIsMobileMenuOpen(false);
@@ -58,14 +62,13 @@ export default function Header({ onOpenBooking }: HeaderProps) {
 
   return (
     <>
-      <motion.header
+      <header
         id="floating-header"
-        initial={{ y: 0, opacity: 1 }}
-        animate={{ 
-          y: isVisible ? 0 : -100,
-          opacity: isVisible ? 1 : 0
+        style={{
+          transform: isVisible ? 'translateY(0)' : 'translateY(-100px)',
+          opacity: isVisible ? 1 : 0,
+          transition: 'transform 0.35s ease-out, opacity 0.35s ease-out'
         }}
-        transition={{ duration: 0.35, ease: "easeOut" }}
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
           isScrolled 
             ? "mx-4 mt-4 rounded-2xl bg-white/95 backdrop-blur-md shadow-2xl border border-beige-warm py-3 px-6" 
@@ -73,46 +76,42 @@ export default function Header({ onOpenBooking }: HeaderProps) {
         }`}
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          {/* Logo */}
+          {/* Logo with Name */}
           <div 
             onClick={() => scrollToSection("home")}
             className="flex items-center gap-3 cursor-pointer group"
           >
-            {/* Logo Placeholder */}
+            {/* Logo Image */}
             <div 
+              className="w-10 h-10 rounded-full overflow-hidden transition-all duration-300 flex-shrink-0"
               style={{
-                backgroundColor: isScrolled ? '#DDD3C7' : 'rgba(255,255,255,0.2)', 
-                color: isScrolled ? '#2D466E' : 'white', 
-                display: 'flex',
-                alignItems: 'center', 
-                justifyContent: 'center', 
-                width: '40px', 
-                height: '40px',
-                fontWeight: 'bold', 
-                fontSize: '0.5rem', 
-                letterSpacing: '1px',
-                borderRadius: '50%',
-                border: isScrolled ? '1px solid rgba(45, 70, 110, 0.3)' : '1px solid rgba(255,255,255,0.3)'
+                border: isScrolled ? '2px solid rgba(45, 70, 110, 0.3)' : '2px solid rgba(255,255,255,0.3)',
+                boxShadow: isScrolled ? '0 2px 8px rgba(45, 70, 110, 0.15)' : '0 2px 8px rgba(0,0,0,0.1)'
               }}
             >
-              LOGO
+              <img 
+                src="/images/logo-andressa.jpg" 
+                alt="Logo Andressa Juliana Psicóloga"
+                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+              />
             </div>
             <div>
-              <span className={`font-serif text-lg md:text-xl font-bold tracking-tight uppercase block leading-none transition-colors ${isScrolled ? 'text-text-dark' : 'text-white'}`}>
+              <span className={`font-serif text-lg md:text-xl font-bold tracking-tight uppercase block leading-none transition-colors duration-300 ${isScrolled ? 'text-text-dark' : 'text-white'}`}>
                 Andressa Juliana
               </span>
-              <span className={`text-[9px] md:text-[10px] font-mono tracking-widest uppercase block mt-1 font-semibold transition-colors ${isScrolled ? 'text-text-muted' : 'text-white/70'}`}>
+              <span className={`text-[9px] md:text-[10px] font-mono tracking-widest uppercase block mt-1 font-semibold transition-colors duration-300 ${isScrolled ? 'text-text-muted' : 'text-white/70'}`}>
                 Psicologa Clinica
               </span>
             </div>
           </div>
 
           {/* Desktop Nav Links */}
-          <nav className="hidden md:flex items-center gap-10">
+          <nav aria-label="Navegacao principal" className="hidden md:flex items-center gap-10">
             {navLinks.map((link) => (
               <button
                 key={link.target}
                 onClick={() => scrollToSection(link.target)}
+                aria-label={`Ir para secao ${link.name}`}
                 className={`text-xs font-mono font-medium uppercase tracking-widest transition-colors relative py-1 group cursor-pointer ${isScrolled ? 'text-text-muted hover:text-slate-med' : 'text-white/80 hover:text-white'}`}
               >
                 {link.name}
@@ -125,6 +124,7 @@ export default function Header({ onOpenBooking }: HeaderProps) {
           <div className="hidden md:flex items-center gap-4">
             <button
               onClick={onOpenBooking}
+              aria-label="Agendar consulta com Andressa Juliana"
               className={`px-5 py-2.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-300 flex items-center gap-1.5 cursor-pointer font-bold ${
                 isScrolled 
                   ? 'bg-slate-med text-white hover:bg-slate-deep' 
@@ -141,24 +141,23 @@ export default function Header({ onOpenBooking }: HeaderProps) {
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className={`p-2 focus:outline-none ${isScrolled ? 'text-text-dark' : 'text-white'}`}
-              aria-label="Menu"
+              aria-label={isMobileMenuOpen ? "Fechar menu de navegacao" : "Abrir menu de navegacao"}
+              aria-expanded={isMobileMenuOpen}
             >
               {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
         </div>
-      </motion.header>
+      </header>
 
       {/* Mobile Menu Panel */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed top-20 left-4 right-4 z-30 bg-white border border-beige-warm rounded-2xl p-6 shadow-2xl backdrop-blur-lg md:hidden flex flex-col gap-6"
-          >
+      {isMobileMenuOpen && (
+        <div
+          className="fixed top-20 left-4 right-4 z-30 bg-white border border-beige-warm rounded-2xl p-6 shadow-2xl backdrop-blur-lg md:hidden flex flex-col gap-6"
+          style={{
+            animation: 'fade-in 0.3s ease-out'
+          }}
+        >
             <div className="flex flex-col gap-4">
               {navLinks.map((link) => (
                 <button
@@ -181,9 +180,8 @@ export default function Header({ onOpenBooking }: HeaderProps) {
               <Calendar className="w-4 h-4" />
               Quero comecar minha transformacao
             </button>
-          </motion.div>
+          </div>
         )}
-      </AnimatePresence>
     </>
   );
 }

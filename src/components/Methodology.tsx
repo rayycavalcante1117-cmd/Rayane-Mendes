@@ -1,4 +1,3 @@
-import { motion } from "motion/react";
 import { Monitor, Building2, Users, GraduationCap, ArrowRight, Activity } from "lucide-react";
 
 interface ServiceCard {
@@ -56,27 +55,8 @@ export default function Methodology() {
     }
   };
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.12
-      }
-    }
-  };
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 40 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
-    }
-  };
-
   return (
-    <section id="servicos" className="py-24 bg-beige-warm relative">
+    <section id="servicos" className="py-24 bg-beige-warm relative content-visibility-auto">
       {/* Decorative vertical lines */}
       <div className="absolute inset-y-0 left-12 w-[1px] bg-slate-med/10 pointer-events-none hidden md:block" />
       <div className="absolute inset-y-0 right-12 w-[1px] bg-slate-med/10 pointer-events-none hidden md:block" />
@@ -85,56 +65,26 @@ export default function Methodology() {
         
         {/* Title */}
         <div className="text-center max-w-2xl mx-auto mb-20">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-slate-med/30 bg-white/60 mb-4"
-          >
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-slate-med/30 bg-white/60 mb-4">
             <Activity className="w-3.5 h-3.5 text-slate-med" />
             <span className="text-[10px] font-mono tracking-widest text-slate-med uppercase font-bold">Servicos</span>
-          </motion.div>
+          </div>
           
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-3xl md:text-4xl lg:text-5xl font-serif text-text-dark tracking-tight"
-          >
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-text-dark tracking-tight">
             Encontre o caminho certo para voce
-          </motion.h2>
+          </h2>
           
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.15 }}
-            className="text-text-muted font-sans mt-4 max-w-xl mx-auto text-sm md:text-base leading-relaxed"
-          >
+          <p className="text-text-muted font-sans mt-4 max-w-xl mx-auto text-sm md:text-base leading-relaxed">
             Atendimento psicologico individual, supervisao clinica e formacoes - tudo com base cientifica e foco em resultados reais.
-          </motion.p>
+          </p>
         </div>
 
         {/* Services Grid */}
-        <motion.div 
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
-        >
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {cards.map((card, idx) => (
-            <motion.div
+            <div
               key={card.title}
-              variants={cardVariants}
-              whileHover={{ 
-                y: -6, 
-                scale: 1.02,
-                transition: { duration: 0.35, ease: "easeOut" } 
-              }}
-              className="relative p-7 rounded-2xl bg-white border border-beige-warm hover:border-slate-med/30 transition-all duration-300 shadow-lg hover:shadow-xl flex flex-col justify-between group overflow-hidden"
+              className="relative p-7 rounded-2xl bg-white border border-beige-warm hover:border-slate-med/30 transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1.5 flex flex-col justify-between group overflow-hidden"
             >
               {/* Card Header Accent Bar */}
               <div className="absolute top-0 left-0 right-0 h-[3px] bg-beige-warm group-hover:bg-slate-med transition-colors duration-300" />
@@ -153,9 +103,9 @@ export default function Methodology() {
                 <h3 className="text-lg font-serif text-text-dark mb-2 group-hover:text-slate-med transition-colors duration-300 font-bold leading-tight">
                   {card.title}
                 </h3>
-                <h4 className="text-[10px] font-mono text-slate-med uppercase tracking-widest mb-4 font-bold">
+                <p className="text-[10px] font-mono text-slate-med uppercase tracking-widest mb-4 font-bold">
                   {card.subtitle}
-                </h4>
+                </p>
                 <p className="text-xs text-text-muted font-sans leading-relaxed mb-6">
                   {card.description}
                 </p>
@@ -180,18 +130,12 @@ export default function Methodology() {
                   <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
 
         {/* Bottom Banner */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="mt-16 p-8 md:p-12 rounded-2xl bg-gradient-to-r from-slate-deep to-slate-med relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl"
-        >
+        <div className="mt-16 p-8 md:p-12 rounded-2xl bg-gradient-to-r from-slate-deep to-slate-med relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl">
           {/* Background pattern */}
           <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)', backgroundSize: '16px 16px' }} />
           
@@ -210,7 +154,7 @@ export default function Methodology() {
               <Activity className="w-7 h-7 stroke-[1.5]" />
             </div>
           </div>
-        </motion.div>
+        </div>
 
       </div>
     </section>

@@ -1,4 +1,23 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:ital,wght@0,100..900;1,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+/* Critical fonts - loaded with font-display: swap for better LCP */
+@font-face {
+  font-family: 'Playfair Display';
+  font-display: swap;
+  src: local('Playfair Display');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-display: swap;
+  src: local('Inter');
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-display: optional;
+  src: local('JetBrains Mono');
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -40,20 +59,20 @@ body {
   background: var(--color-muted-steel);
 }
 
-/* Floating animation for cards */
+/* Floating animation for cards - GPU accelerated with transform only */
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-12px); }
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -12px, 0); }
 }
 
 @keyframes float-delayed {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-8px); }
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -8px, 0); }
 }
 
 @keyframes float-slow {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-6px); }
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -6px, 0); }
 }
 
 .animate-float {
@@ -68,6 +87,35 @@ body {
 .animate-float-slow {
   animation: float-slow 6s ease-in-out infinite;
   animation-delay: 0.5s;
+}
+
+/* CSS fade-in animations - GPU accelerated with transform and opacity only */
+@keyframes fade-in {
+  from { opacity: 0; transform: translate3d(0, 20px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+@keyframes fade-in-delayed {
+  from { opacity: 0; transform: translate3d(40px, 0, 0) scale(0.95); }
+  to { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@keyframes bounce-slow {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, 6px, 0); }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.8s ease-out forwards;
+}
+
+.animate-fade-in-delayed {
+  animation: fade-in-delayed 1s ease-out 0.3s forwards;
+  opacity: 0;
+}
+
+.animate-bounce-slow {
+  animation: bounce-slow 1.5s ease-in-out infinite;
 }
 
 /* Shimmer effect */
@@ -130,6 +178,18 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
+/* Enhanced Glassmorphism for Hero floating cards */
+.glass-card-enhanced {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 
+    0 8px 32px rgba(36, 57, 90, 0.15),
+    0 2px 8px rgba(36, 57, 90, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
 /* Link card hover overlay */
 .link-card {
   position: relative;
@@ -167,10 +227,54 @@ body {
 
 /* Social card hover */
 .social-card {
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  will-change: transform;
 }
 
 .social-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 40px rgba(45, 70, 110, 0.15);
+}
+
+/* Performance optimizations */
+.animate-float,
+.animate-float-delayed,
+.animate-float-slow {
+  will-change: transform;
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .animate-float,
+  .animate-float-delayed,
+  .animate-float-slow,
+  .animate-scroll-left,
+  .animate-scroll-clinic,
+  .shimmer-btn::after {
+    animation: none !important;
+  }
+  
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+/* Content visibility for below-the-fold sections - improves initial render */
+.content-visibility-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 500px;
+}
+
+/* GPU-accelerated animations only using transform and opacity */
+.gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Optimized transitions - only animate transform and opacity */
+.optimized-transition {
+  transition-property: transform, opacity;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }

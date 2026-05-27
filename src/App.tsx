@@ -3,16 +3,25 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState } from "react";
+import { useState, lazy, Suspense } from "react";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
-import Methodology from "./components/Methodology";
-import About from "./components/About";
-import SocialProof from "./components/SocialProof";
-import Contact from "./components/Contact";
-import WhatsAppButton from "./components/WhatsAppButton";
-import BookingModal from "./components/BookingModal";
 import { Instagram, Shield } from "lucide-react";
+
+// Lazy load below-the-fold components for better initial load
+const Methodology = lazy(() => import("./components/Methodology"));
+const About = lazy(() => import("./components/About"));
+const SocialProof = lazy(() => import("./components/SocialProof"));
+const Contact = lazy(() => import("./components/Contact"));
+const WhatsAppButton = lazy(() => import("./components/WhatsAppButton"));
+const BookingModal = lazy(() => import("./components/BookingModal"));
+
+// Loading fallback component
+const SectionLoader = () => (
+  <div className="min-h-[400px] flex items-center justify-center bg-beige-cream">
+    <div className="w-8 h-8 border-2 border-slate-med border-t-transparent rounded-full animate-spin" />
+  </div>
+);
 
 export default function App() {
   const [isBookingOpen, setIsBookingOpen] = useState(false);
@@ -32,17 +41,25 @@ export default function App() {
       {/* 2. Hero */}
       <Hero onOpenBooking={toggleBooking} bgImagePath={bgImagePath} />
 
-      {/* 3. Servicos - fundo bege */}
-      <Methodology />
+      {/* 3. Servicos - fundo bege (lazy loaded) */}
+      <Suspense fallback={<SectionLoader />}>
+        <Methodology />
+      </Suspense>
 
-      {/* 4. Sobre - fundo branco */}
-      <About portraitPath={portraitPath} />
+      {/* 4. Sobre - fundo branco (lazy loaded) */}
+      <Suspense fallback={<SectionLoader />}>
+        <About portraitPath={portraitPath} />
+      </Suspense>
 
-      {/* 5. Depoimentos - fundo creme */}
-      <SocialProof />
+      {/* 5. Depoimentos - fundo creme (lazy loaded) */}
+      <Suspense fallback={<SectionLoader />}>
+        <SocialProof />
+      </Suspense>
 
-      {/* 6. Contato - fundo creme */}
-      <Contact />
+      {/* 6. Contato - fundo creme (lazy loaded) */}
+      <Suspense fallback={<SectionLoader />}>
+        <Contact />
+      </Suspense>
 
       {/* 7. Footer */}
       <footer className="bg-slate-deep text-white py-16 px-6 md:px-8 position-relative z-10">
@@ -156,11 +173,15 @@ export default function App() {
         </div>
       </footer>
 
-      {/* WhatsApp Button */}
-      <WhatsAppButton />
+      {/* WhatsApp Button (lazy loaded) */}
+      <Suspense fallback={null}>
+        <WhatsAppButton />
+      </Suspense>
 
-      {/* Booking Modal */}
-      <BookingModal isOpen={isBookingOpen} onClose={toggleBooking} />
+      {/* Booking Modal (lazy loaded) */}
+      <Suspense fallback={null}>
+        <BookingModal isOpen={isBookingOpen} onClose={toggleBooking} />
+      </Suspense>
     </div>
   );
 }

@@ -1,4 +1,3 @@
-import { motion } from "motion/react";
 import { Quote, GraduationCap, Award, ShieldCheck } from "lucide-react";
 
 interface AboutProps {
@@ -25,7 +24,7 @@ export default function About({ portraitPath }: AboutProps) {
   ];
 
   return (
-    <section id="sobre" className="py-24 bg-white relative overflow-hidden">
+    <section id="sobre" className="py-24 bg-white relative overflow-hidden content-visibility-auto">
       {/* Top accent line */}
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-beige-warm via-slate-med to-beige-warm" />
 
@@ -34,35 +33,17 @@ export default function About({ portraitPath }: AboutProps) {
           
           {/* Image Block - Left side */}
           <div className="lg:col-span-5 relative">
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
-              className="relative aspect-[3/4] w-full max-w-sm sm:max-w-md mx-auto rounded-2xl overflow-hidden shadow-2xl border border-beige-warm p-3 bg-beige-light"
-            >
+            <div className="relative aspect-[3/4] w-full max-w-sm sm:max-w-md mx-auto rounded-2xl overflow-hidden shadow-2xl border border-beige-warm p-3 bg-beige-light">
               {/* Outer frames */}
               <div className="absolute inset-0 border border-slate-med/15 rounded-2xl pointer-events-none z-10" />
               
-              {/* Placeholder for photo */}
-              <div 
-                style={{
-                  backgroundColor: '#DDD3C7', 
-                  color: '#2D466E', 
-                  display: 'flex',
-                  alignItems: 'center', 
-                  justifyContent: 'center', 
-                  width: '100%', 
-                  height: '100%',
-                  minHeight: '200px', 
-                  fontWeight: 'bold', 
-                  fontSize: '1.2rem', 
-                  letterSpacing: '2px',
-                  borderRadius: '0.75rem'
-                }}
-              >
-                ANDRESSA JULIANA
-              </div>
+              {/* Professional Portrait Image */}
+              <img 
+                src="/images/portrait-vertical.jpg"
+                alt="Andressa Juliana de Oliveira - Psicóloga Clínica CRP-12/19715, especialista em Terapia Cognitivo-Comportamental"
+                className="w-full h-full object-cover rounded-xl"
+                loading="lazy"
+              />
 
               {/* Caption over photo */}
               <div className="absolute bottom-6 left-6 right-6 p-4 rounded-xl bg-white/95 backdrop-blur-md border border-beige-warm hidden sm:block">
@@ -70,7 +51,7 @@ export default function About({ portraitPath }: AboutProps) {
                 <span className="text-sm font-serif block font-bold text-text-dark">Andressa Juliana de Oliveira</span>
                 <span className="text-[10px] font-mono block text-text-muted">CRP-12/19715</span>
               </div>
-            </motion.div>
+            </div>
 
             {/* Decorative Frame Layout */}
             <div className="absolute -top-6 -left-6 w-32 h-32 border-t border-l border-slate-med/20 rounded-tl-2xl -z-1" />
@@ -86,33 +67,15 @@ export default function About({ portraitPath }: AboutProps) {
               <span className="h-[1px] w-12 bg-slate-med/30" />
             </div>
 
-            <motion.h2 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="text-3xl sm:text-4xl lg:text-5xl font-serif text-text-dark tracking-tight mb-6 leading-tight"
-            >
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-text-dark tracking-tight mb-6 leading-tight">
               Prazer, sou a Andressa
-            </motion.h2>
+            </h2>
 
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.05 }}
-              className="text-sm text-slate-med font-mono uppercase tracking-widest mb-6 font-bold"
-            >
+            <p className="text-sm text-slate-med font-mono uppercase tracking-widest mb-6 font-bold">
               CRP-12/19715
-            </motion.p>
+            </p>
 
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.1 }}
-              className="text-sm sm:text-base text-text-muted font-sans space-y-4 mb-8 leading-relaxed"
-            >
+            <div className="text-sm sm:text-base text-text-muted font-sans space-y-4 mb-8 leading-relaxed">
               <p>
                 Sou psicologa graduada pela <strong className="text-text-dark">UNIVALI</strong>, especialista em <strong className="text-text-dark">Terapia Cognitivo-Comportamental</strong> e terapeuta certificada pela <strong className="text-text-dark">Federacao Brasileira de Terapias Cognitiva</strong>.
               </p>
@@ -122,7 +85,7 @@ export default function About({ portraitPath }: AboutProps) {
               <p>
                 Alem de psicologa, atuo como <strong className="text-text-dark">professora e supervisora clinica</strong>, orientando outros psicologos na atuacao baseada em evidencias cientificas.
               </p>
-            </motion.div>
+            </div>
 
             {/* Credentials grid */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 pt-6 border-t border-beige-warm">
@@ -136,13 +99,7 @@ export default function About({ portraitPath }: AboutProps) {
             </div>
 
             {/* Quote Block */}
-            <motion.div 
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="p-6 rounded-xl bg-gradient-to-r from-slate-deep to-slate-med flex gap-4 items-start"
-            >
+            <div className="p-6 rounded-xl bg-gradient-to-r from-slate-deep to-slate-med flex gap-4 items-start">
               <Quote className="w-8 h-8 text-white/50 flex-shrink-0" />
               <div>
                 <p className="italic text-base text-white leading-relaxed font-serif">
@@ -150,7 +107,7 @@ export default function About({ portraitPath }: AboutProps) {
                 </p>
                 <span className="block text-[10px] font-mono text-white/70 uppercase mt-2 tracking-widest font-bold">- Andressa Juliana</span>
               </div>
-            </motion.div>
+            </div>
 
           </div>
 
