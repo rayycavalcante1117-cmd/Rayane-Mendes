@@ -70,6 +70,35 @@ body {
   animation-delay: 0.5s;
 }
 
+/* CSS fade-in animations (replacing framer-motion) */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in-delayed {
+  from { opacity: 0; transform: translateX(40px) scale(0.95); }
+  to { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+@keyframes bounce-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.8s ease-out forwards;
+}
+
+.animate-fade-in-delayed {
+  animation: fade-in-delayed 1s ease-out 0.3s forwards;
+  opacity: 0;
+}
+
+.animate-bounce-slow {
+  animation: bounce-slow 1.5s ease-in-out infinite;
+}
+
 /* Shimmer effect */
 @keyframes shimmer {
   0% { background-position: -200% 0; }
@@ -167,10 +196,35 @@ body {
 
 /* Social card hover */
 .social-card {
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  will-change: transform;
 }
 
 .social-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 40px rgba(45, 70, 110, 0.15);
+}
+
+/* Performance optimizations */
+.animate-float,
+.animate-float-delayed,
+.animate-float-slow {
+  will-change: transform;
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .animate-float,
+  .animate-float-delayed,
+  .animate-float-slow,
+  .animate-scroll-left,
+  .animate-scroll-clinic,
+  .shimmer-btn::after {
+    animation: none !important;
+  }
+  
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }

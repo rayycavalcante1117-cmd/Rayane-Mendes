@@ -1,9 +1,54 @@
-import { useRef, useEffect } from "react";
-import { motion } from "motion/react";
+import { useRef, useEffect, memo } from "react";
 import { Quote, Star } from "lucide-react";
 
-export default function SocialProof() {
-  const testimonials = [
+// Memoized testimonial card component
+const TestimonialCard = memo(({ testimonial, index }: { testimonial: typeof testimonials[0], index: number }) => (
+  <div
+    key={`${testimonial.id}-${index}`}
+    className="flex-shrink-0 w-[350px] md:w-[400px] p-6 rounded-2xl bg-white border border-beige-warm/50 shadow-lg hover:shadow-xl transition-shadow duration-300"
+  >
+    {/* Quote icon */}
+    <div className="flex items-center justify-between mb-4">
+      <Quote className="w-8 h-8 text-slate-med/20" />
+      <div className="flex gap-0.5">
+        {[...Array(5)].map((_, i) => (
+          <Star key={i} className="w-3.5 h-3.5 text-slate-med fill-slate-med" />
+        ))}
+      </div>
+    </div>
+
+    {/* Highlight badge */}
+    <span className="inline-block px-3 py-1 bg-beige-warm/50 text-slate-deep text-[10px] font-mono uppercase tracking-wider rounded-full mb-4 font-bold">
+      {testimonial.highlight}
+    </span>
+
+    {/* Testimonial text */}
+    <p className="text-sm text-text-dark font-sans leading-relaxed mb-6 italic">
+      {`"${testimonial.text}"`}
+    </p>
+
+    {/* Patient info */}
+    <div className="pt-4 border-t border-beige-warm/50 flex items-center justify-between">
+      <div>
+        <span className="text-xs font-mono text-slate-med font-bold block">
+          {testimonial.name}
+        </span>
+        <span className="text-[10px] text-text-muted font-sans">
+          {testimonial.location}, {testimonial.age}
+        </span>
+      </div>
+      <div className="w-8 h-8 rounded-full bg-beige-warm flex items-center justify-center">
+        <span className="text-xs font-serif text-slate-deep font-bold">
+          {testimonial.name.charAt(0)}
+        </span>
+      </div>
+    </div>
+  </div>
+));
+
+TestimonialCard.displayName = 'TestimonialCard';
+
+const testimonials = [
     {
       id: "1",
       name: "C.D.",
@@ -54,6 +99,7 @@ export default function SocialProof() {
     }
   ];
 
+export default function SocialProof() {
   // Duplicate testimonials for infinite scroll effect
   const duplicatedTestimonials = [...testimonials, ...testimonials];
 
@@ -125,58 +171,14 @@ export default function SocialProof() {
         style={{ scrollBehavior: 'auto' }}
       >
         {duplicatedTestimonials.map((testimonial, index) => (
-          <div
-            key={`${testimonial.id}-${index}`}
-            className="flex-shrink-0 w-[350px] md:w-[400px] p-6 rounded-2xl bg-white border border-beige-warm/50 shadow-lg hover:shadow-xl transition-shadow duration-300"
-          >
-            {/* Quote icon */}
-            <div className="flex items-center justify-between mb-4">
-              <Quote className="w-8 h-8 text-slate-med/20" />
-              <div className="flex gap-0.5">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-3.5 h-3.5 text-slate-med fill-slate-med" />
-                ))}
-              </div>
-            </div>
-
-            {/* Highlight badge */}
-            <span className="inline-block px-3 py-1 bg-beige-warm/50 text-slate-deep text-[10px] font-mono uppercase tracking-wider rounded-full mb-4 font-bold">
-              {testimonial.highlight}
-            </span>
-
-            {/* Testimonial text */}
-            <p className="text-sm text-text-dark font-sans leading-relaxed mb-6 italic">
-              {`"${testimonial.text}"`}
-            </p>
-
-            {/* Patient info */}
-            <div className="pt-4 border-t border-beige-warm/50 flex items-center justify-between">
-              <div>
-                <span className="text-xs font-mono text-slate-med font-bold block">
-                  {testimonial.name}
-                </span>
-                <span className="text-[10px] text-text-muted font-sans">
-                  {testimonial.location}, {testimonial.age}
-                </span>
-              </div>
-              <div className="w-8 h-8 rounded-full bg-beige-warm flex items-center justify-center">
-                <span className="text-xs font-serif text-slate-deep font-bold">
-                  {testimonial.name.charAt(0)}
-                </span>
-              </div>
-            </div>
-          </div>
+          <TestimonialCard key={`${testimonial.id}-${index}`} testimonial={testimonial} index={index} />
         ))}
       </div>
 
       {/* Bottom note */}
-      <motion.p 
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        className="text-center text-[9px] font-mono uppercase tracking-[0.2em] text-text-muted/50 mt-8 px-6"
-      >
+      <p className="text-center text-[9px] font-mono uppercase tracking-[0.2em] text-text-muted/50 mt-8 px-6">
         Depoimentos reais compartilhados com autorizacao dos pacientes
-      </motion.p>
+      </p>
     </section>
   );
 }

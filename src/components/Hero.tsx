@@ -1,4 +1,3 @@
-import { motion } from "motion/react";
 import { Sparkles, Heart, Video } from "lucide-react";
 
 interface HeroProps {
@@ -6,35 +5,7 @@ interface HeroProps {
   bgImagePath: string;
 }
 
-export default function Hero({ onOpenBooking, bgImagePath }: HeroProps) {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
-    },
-  };
-
-  const textRevealVariants = {
-    hidden: { opacity: 0, y: "100%" },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: { duration: 1.0, ease: [0.16, 1, 0.3, 1] }
-    }
-  };
+export default function Hero({ onOpenBooking }: HeroProps) {
 
   return (
     <section 
@@ -90,64 +61,41 @@ export default function Hero({ onOpenBooking, bgImagePath }: HeroProps) {
       <div className="max-w-7xl mx-auto px-6 md:px-8 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center relative z-10">
         
         {/* Text Block */}
-        <motion.div 
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="lg:col-span-7 flex flex-col justify-center text-left"
-        >
+        <div className="lg:col-span-7 flex flex-col justify-center text-left animate-fade-in">
           {/* Tag Line */}
-          <motion.div 
-            variants={itemVariants} 
-            className="flex items-center gap-2 mb-6"
-          >
+          <div className="flex items-center gap-2 mb-6">
             <span className="inline-block px-4 py-1.5 bg-white/20 backdrop-blur-sm text-white text-[10px] uppercase tracking-[0.2em] font-bold border border-white/30 rounded-full">
               Terapia Cognitivo-Comportamental
             </span>
-          </motion.div>
+          </div>
 
           {/* Headline */}
           <div className="overflow-hidden mb-6">
-            <motion.h1 
-              variants={textRevealVariants}
-              className="text-4xl sm:text-5xl lg:text-6xl font-serif text-white tracking-tight leading-[1.1]"
-            >
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif text-white tracking-tight leading-[1.1]">
               Conquiste <span className="italic font-normal text-beige-warm">clareza emocional</span> e transforme sua relacao consigo e com o mundo.
-            </motion.h1>
+            </h1>
           </div>
 
           {/* Subtitulo */}
-          <motion.p 
-            variants={itemVariants}
-            className="text-lg sm:text-xl text-white/90 font-sans mb-4 leading-relaxed max-w-xl font-medium"
-          >
+          <p className="text-lg sm:text-xl text-white/90 font-sans mb-4 leading-relaxed max-w-xl font-medium">
             Chega de se sentir refem da ansiedade, da inseguranca ou de padroes que te travam.
-          </motion.p>
-          <motion.p 
-            variants={itemVariants}
-            className="text-base text-white/70 font-sans mb-10 leading-relaxed max-w-xl"
-          >
+          </p>
+          <p className="text-base text-white/70 font-sans mb-10 leading-relaxed max-w-xl">
             Com a Terapia Cognitivo-Comportamental, voce aprende ferramentas praticas para reduzir sintomas, desenvolver novas habilidades e retomar o controle da sua vida.
-          </motion.p>
+          </p>
 
           {/* CTA Button */}
-          <motion.div 
-            variants={itemVariants}
-            className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4"
-          >
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
             <button
               onClick={onOpenBooking}
               className="px-10 py-5 bg-white text-slate-deep border-2 border-white rounded-full text-xs font-mono tracking-widest uppercase hover:bg-beige-cream hover:border-beige-cream hover:shadow-2xl transition-all duration-300 flex items-center justify-center gap-2 group cursor-pointer font-bold shimmer-btn"
             >
               Quero comecar minha transformacao
             </button>
-          </motion.div>
+          </div>
 
           {/* Trust Indicators */}
-          <motion.div 
-            variants={itemVariants}
-            className="mt-14 pt-8 border-t border-white/20 grid grid-cols-2 md:grid-cols-3 gap-6"
-          >
+          <div className="mt-14 pt-8 border-t border-white/20 grid grid-cols-2 md:grid-cols-3 gap-6">
             <div>
               <span className="text-2xl font-serif text-white font-bold block">+500</span>
               <span className="text-[10px] text-white/60 font-mono uppercase tracking-widest block mt-1">
@@ -166,17 +114,12 @@ export default function Hero({ onOpenBooking, bgImagePath }: HeroProps) {
                 Baseada em Evidencias
               </span>
             </div>
-          </motion.div>
+          </div>
 
-        </motion.div>
+        </div>
 
         {/* Image Block */}
-        <motion.div 
-          initial={{ opacity: 0, x: 40, scale: 0.95 }}
-          animate={{ opacity: 1, x: 0, scale: 1 }}
-          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
-          className="lg:col-span-5 relative flex justify-center items-center"
-        >
+        <div className="lg:col-span-5 relative flex justify-center items-center animate-fade-in-delayed">
           {/* Decorative Backplate */}
           <div className="absolute -inset-4 border border-white/20 rounded-2xl pointer-events-none z-0 scale-95 md:scale-100" />
           
@@ -207,19 +150,15 @@ export default function Hero({ onOpenBooking, bgImagePath }: HeroProps) {
           <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-white/10 rounded-3xl blur-md -z-10" />
           <div className="absolute bottom-12 -left-8 w-16 h-40 bg-white/10 border-l border-white/20 rounded-full -z-10 hidden md:block" />
 
-        </motion.div>
+        </div>
       </div>
 
       {/* Scroll Indicator */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5">
         <span className="text-[9px] font-mono tracking-widest text-white/50 uppercase">Rolagem</span>
-        <motion.div 
-          animate={{ y: [0, 6, 0] }}
-          transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
-          className="w-1.5 h-6 bg-white/30 rounded-full relative overflow-hidden border border-white/40"
-        >
+        <div className="w-1.5 h-6 bg-white/30 rounded-full relative overflow-hidden border border-white/40 animate-bounce-slow">
           <div className="absolute top-0 left-0 right-0 h-2 bg-white rounded-full" />
-        </motion.div>
+        </div>
       </div>
     </section>
   );

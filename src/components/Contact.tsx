@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
 import { Mail, CheckCircle, ArrowRight, MessageCircle, Instagram, MapPin, Clock, Phone } from "lucide-react";
 
 interface ContactForm {
@@ -77,13 +76,7 @@ export default function Contact() {
       <div className="max-w-7xl mx-auto px-6 md:px-8">
         
         {/* Title */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center max-w-2xl mx-auto mb-20"
-        >
+        <div className="text-center max-w-2xl mx-auto mb-20">
           <span className="text-xs font-mono tracking-widest text-muted-steel uppercase mb-3 block font-bold">De o proximo passo</span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-text-dark tracking-tight mb-4">
             Pronto para comecar sua transformacao?
@@ -91,19 +84,13 @@ export default function Contact() {
           <p className="text-base font-sans text-text-muted leading-relaxed">
             Escolha o canal mais confortavel para voce. Responderei o mais breve possivel.
           </p>
-        </motion.div>
+        </div>
 
         {/* Main Grid: WhatsApp Card + Social Cards */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16">
           
           {/* WhatsApp Card - Menor e a esquerda */}
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="lg:col-span-5"
-          >
+          <div className="lg:col-span-5">
             <div className="p-8 rounded-2xl bg-gradient-to-br from-slate-deep to-slate-med shadow-xl relative overflow-hidden h-full">
               <div className="absolute inset-0 opacity-5 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)', backgroundSize: '16px 16px' }} />
               
@@ -130,36 +117,28 @@ export default function Contact() {
                 </a>
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Social Cards Grid - A direita */}
           <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-4 gap-4">
             {/* Instagram */}
-            <motion.a 
+            <a 
               href="https://www.instagram.com/andressajuliana.psi"
               target="_blank"
               rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: 0.1 }}
               className="social-card p-5 rounded-xl bg-white border border-beige-soft/50 shadow-sm flex flex-col items-center justify-center gap-3 text-center"
             >
               <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 via-pink-500 to-orange-400 flex items-center justify-center">
                 <Instagram className="w-5 h-5 text-white" />
               </div>
               <span className="text-xs font-mono text-text-dark font-bold uppercase tracking-wider">Instagram</span>
-            </motion.a>
+            </a>
 
             {/* TikTok */}
-            <motion.a 
+            <a 
               href="https://www.tiktok.com/@andressajuliana.psi"
               target="_blank"
               rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: 0.2 }}
               className="social-card p-5 rounded-xl bg-white border border-beige-soft/50 shadow-sm flex flex-col items-center justify-center gap-3 text-center"
             >
               <div className="w-10 h-10 rounded-full bg-black flex items-center justify-center">
@@ -168,17 +147,13 @@ export default function Contact() {
                 </svg>
               </div>
               <span className="text-xs font-mono text-text-dark font-bold uppercase tracking-wider">TikTok</span>
-            </motion.a>
+            </a>
 
             {/* YouTube */}
-            <motion.a 
+            <a 
               href="https://www.youtube.com/@andressajuliana.psicologa"
               target="_blank"
               rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: 0.3 }}
               className="social-card p-5 rounded-xl bg-white border border-beige-soft/50 shadow-sm flex flex-col items-center justify-center gap-3 text-center"
             >
               <div className="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center">
@@ -187,22 +162,18 @@ export default function Contact() {
                 </svg>
               </div>
               <span className="text-xs font-mono text-text-dark font-bold uppercase tracking-wider">YouTube</span>
-            </motion.a>
+            </a>
 
             {/* Email */}
-            <motion.a 
+            <a 
               href="mailto:andressajuliana.psi@gmail.com"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: 0.4 }}
               className="social-card p-5 rounded-xl bg-white border border-beige-soft/50 shadow-sm flex flex-col items-center justify-center gap-3 text-center"
             >
               <div className="w-10 h-10 rounded-full bg-slate-med flex items-center justify-center">
                 <Mail className="w-5 h-5 text-white" />
               </div>
               <span className="text-xs font-mono text-text-dark font-bold uppercase tracking-wider">E-mail</span>
-            </motion.a>
+            </a>
           </div>
         </div>
 
@@ -210,161 +181,134 @@ export default function Contact() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
           
           {/* Contact Form */}
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="p-8 rounded-2xl bg-white border border-beige-soft/50 shadow-lg"
-          >
-            <AnimatePresence mode="wait">
-              {!isSuccess ? (
-                <motion.form 
-                  key="form"
-                  onSubmit={handleSubmit}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  className="space-y-5"
-                >
+          <div className="p-8 rounded-2xl bg-white border border-beige-soft/50 shadow-lg">
+            {!isSuccess ? (
+              <form onSubmit={handleSubmit} className="space-y-5">
+                <div>
+                  <h3 className="text-xl font-serif text-text-dark mb-1 font-bold">Prefere o formulario?</h3>
+                  <p className="text-sm text-text-muted font-sans">Preencha e retorno em ate 24h.</p>
+                </div>
+
+                <div className="space-y-4">
                   <div>
-                    <h3 className="text-xl font-serif text-text-dark mb-1 font-bold">Prefere o formulario?</h3>
-                    <p className="text-sm text-text-muted font-sans">Preencha e retorno em ate 24h.</p>
+                    <label className="text-[10px] font-mono uppercase tracking-[0.15em] text-text-muted block mb-1.5 font-bold">Nome Completo</label>
+                    <input 
+                      type="text" 
+                      name="name" 
+                      required
+                      value={formState.name}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 rounded-lg bg-beige-cream border border-beige-soft text-text-dark text-sm focus:outline-none focus:border-slate-med placeholder-text-muted/50"
+                      placeholder="Seu nome"
+                    />
                   </div>
 
-                  <div className="space-y-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="text-[10px] font-mono uppercase tracking-[0.15em] text-text-muted block mb-1.5 font-bold">Nome Completo</label>
+                      <label className="text-[10px] font-mono uppercase tracking-[0.15em] text-text-muted block mb-1.5 font-bold">WhatsApp</label>
                       <input 
-                        type="text" 
-                        name="name" 
+                        type="tel" 
+                        name="phone" 
                         required
-                        value={formState.name}
+                        value={formState.phone}
                         onChange={handleInputChange}
                         className="w-full px-4 py-3 rounded-lg bg-beige-cream border border-beige-soft text-text-dark text-sm focus:outline-none focus:border-slate-med placeholder-text-muted/50"
-                        placeholder="Seu nome"
+                        placeholder="(00) 00000-0000"
                       />
                     </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
-                        <label className="text-[10px] font-mono uppercase tracking-[0.15em] text-text-muted block mb-1.5 font-bold">WhatsApp</label>
-                        <input 
-                          type="tel" 
-                          name="phone" 
-                          required
-                          value={formState.phone}
-                          onChange={handleInputChange}
-                          className="w-full px-4 py-3 rounded-lg bg-beige-cream border border-beige-soft text-text-dark text-sm focus:outline-none focus:border-slate-med placeholder-text-muted/50"
-                          placeholder="(00) 00000-0000"
-                        />
-                      </div>
-                      <div>
-                        <label className="text-[10px] font-mono uppercase tracking-[0.15em] text-text-muted block mb-1.5 font-bold">E-mail</label>
-                        <input 
-                          type="email" 
-                          name="email" 
-                          required
-                          value={formState.email}
-                          onChange={handleInputChange}
-                          className="w-full px-4 py-3 rounded-lg bg-beige-cream border border-beige-soft text-text-dark text-sm focus:outline-none focus:border-slate-med placeholder-text-muted/50"
-                          placeholder="seu@email.com"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
-                        <label className="text-[10px] font-mono uppercase tracking-[0.15em] text-text-muted block mb-1.5 font-bold">Servico</label>
-                        <select 
-                          name="serviceNeed"
-                          value={formState.serviceNeed}
-                          onChange={handleInputChange}
-                          className="w-full px-4 py-3 rounded-lg bg-beige-cream border border-beige-soft text-text-dark text-sm focus:outline-none focus:border-slate-med appearance-none cursor-pointer"
-                        >
-                          <option value="terapia">Psicoterapia</option>
-                          <option value="supervisao">Supervisao Clinica</option>
-                          <option value="cursos">Cursos</option>
-                          <option value="outro">Outro</option>
-                        </select>
-                      </div>
-                      <div>
-                        <label className="text-[10px] font-mono uppercase tracking-[0.15em] text-text-muted block mb-1.5 font-bold">Modalidade</label>
-                        <select 
-                          name="modality"
-                          value={formState.modality}
-                          onChange={handleInputChange}
-                          className="w-full px-4 py-3 rounded-lg bg-beige-cream border border-beige-soft text-text-dark text-sm focus:outline-none focus:border-slate-med appearance-none cursor-pointer"
-                        >
-                          <option value="online">Online</option>
-                          <option value="presencial">Presencial</option>
-                        </select>
-                      </div>
-                    </div>
-
                     <div>
-                      <label className="text-[10px] font-mono uppercase tracking-[0.15em] text-text-muted block mb-1.5 font-bold">Mensagem (Opcional)</label>
-                      <textarea 
-                        name="message"
-                        value={formState.message}
+                      <label className="text-[10px] font-mono uppercase tracking-[0.15em] text-text-muted block mb-1.5 font-bold">E-mail</label>
+                      <input 
+                        type="email" 
+                        name="email" 
+                        required
+                        value={formState.email}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 rounded-lg bg-beige-cream border border-beige-soft text-text-dark text-sm focus:outline-none focus:border-slate-med placeholder-text-muted/50 h-24 resize-none"
-                        placeholder="Conte-me um pouco sobre voce..."
+                        className="w-full px-4 py-3 rounded-lg bg-beige-cream border border-beige-soft text-text-dark text-sm focus:outline-none focus:border-slate-med placeholder-text-muted/50"
+                        placeholder="seu@email.com"
                       />
                     </div>
                   </div>
 
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full py-4 bg-slate-deep border border-slate-deep text-white hover:bg-slate-med hover:shadow-xl rounded-xl text-xs font-mono tracking-widest uppercase transition-all duration-300 font-bold shadow-md cursor-pointer disabled:opacity-50"
-                  >
-                    {isSubmitting ? "Enviando..." : "Enviar Mensagem"}
-                  </button>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="text-[10px] font-mono uppercase tracking-[0.15em] text-text-muted block mb-1.5 font-bold">Servico</label>
+                      <select 
+                        name="serviceNeed"
+                        value={formState.serviceNeed}
+                        onChange={handleInputChange}
+                        className="w-full px-4 py-3 rounded-lg bg-beige-cream border border-beige-soft text-text-dark text-sm focus:outline-none focus:border-slate-med appearance-none cursor-pointer"
+                      >
+                        <option value="terapia">Psicoterapia</option>
+                        <option value="supervisao">Supervisao Clinica</option>
+                        <option value="cursos">Cursos</option>
+                        <option value="outro">Outro</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className="text-[10px] font-mono uppercase tracking-[0.15em] text-text-muted block mb-1.5 font-bold">Modalidade</label>
+                      <select 
+                        name="modality"
+                        value={formState.modality}
+                        onChange={handleInputChange}
+                        className="w-full px-4 py-3 rounded-lg bg-beige-cream border border-beige-soft text-text-dark text-sm focus:outline-none focus:border-slate-med appearance-none cursor-pointer"
+                      >
+                        <option value="online">Online</option>
+                        <option value="presencial">Presencial</option>
+                      </select>
+                    </div>
+                  </div>
 
-                  <p className="text-[9px] text-center text-text-muted/60 font-mono tracking-widest">
-                    Suas informacoes sao tratadas com total sigilo.
-                  </p>
-                </motion.form>
-              ) : (
-                <motion.div 
-                  key="success"
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0 }}
-                  className="h-full flex flex-col justify-center items-center text-center py-12 px-4 space-y-6"
-                >
-                  <div className="w-16 h-16 rounded-full bg-slate-deep/10 text-slate-deep flex items-center justify-center">
-                    <CheckCircle className="w-10 h-10" />
-                  </div>
                   <div>
-                    <h3 className="text-2xl font-serif text-text-dark mb-2">Mensagem Enviada!</h3>
-                    <p className="text-sm text-text-muted leading-relaxed max-w-sm">
-                      Obrigada pelo seu contato! Retornarei em breve.
-                    </p>
+                    <label className="text-[10px] font-mono uppercase tracking-[0.15em] text-text-muted block mb-1.5 font-bold">Mensagem (Opcional)</label>
+                    <textarea 
+                      name="message"
+                      value={formState.message}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 rounded-lg bg-beige-cream border border-beige-soft text-text-dark text-sm focus:outline-none focus:border-slate-med placeholder-text-muted/50 h-24 resize-none"
+                      placeholder="Conte-me um pouco sobre voce..."
+                    />
                   </div>
-                  <button
-                    onClick={() => setIsSuccess(false)}
-                    className="px-6 py-2.5 bg-beige-soft/50 text-text-dark border border-beige-soft hover:bg-beige-soft transition-all text-xs font-mono tracking-widest uppercase rounded-lg cursor-pointer"
-                  >
-                    Enviar outra mensagem
-                  </button>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </motion.div>
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full py-4 bg-slate-deep border border-slate-deep text-white hover:bg-slate-med hover:shadow-xl rounded-xl text-xs font-mono tracking-widest uppercase transition-all duration-300 font-bold shadow-md cursor-pointer disabled:opacity-50"
+                >
+                  {isSubmitting ? "Enviando..." : "Enviar Mensagem"}
+                </button>
+
+                <p className="text-[9px] text-center text-text-muted/60 font-mono tracking-widest">
+                  Suas informacoes sao tratadas com total sigilo.
+                </p>
+              </form>
+            ) : (
+              <div className="h-full flex flex-col justify-center items-center text-center py-12 px-4 space-y-6">
+                <div className="w-16 h-16 rounded-full bg-slate-deep/10 text-slate-deep flex items-center justify-center">
+                  <CheckCircle className="w-10 h-10" />
+                </div>
+                <div>
+                  <h3 className="text-2xl font-serif text-text-dark mb-2">Mensagem Enviada!</h3>
+                  <p className="text-sm text-text-muted leading-relaxed max-w-sm">
+                    Obrigada pelo seu contato! Retornarei em breve.
+                  </p>
+                </div>
+                <button
+                  onClick={() => setIsSuccess(false)}
+                  className="px-6 py-2.5 bg-beige-soft/50 text-text-dark border border-beige-soft hover:bg-beige-soft transition-all text-xs font-mono tracking-widest uppercase rounded-lg cursor-pointer"
+                >
+                  Enviar outra mensagem
+                </button>
+              </div>
+            )}
+          </div>
 
           {/* Map Card */}
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="p-6 rounded-2xl bg-white border border-beige-soft/50 shadow-lg"
-          >
+          <div className="p-6 rounded-2xl bg-white border border-beige-soft/50 shadow-lg">
             <h3 className="text-xl font-serif text-text-dark mb-4 font-bold">Localizacao da Clinica</h3>
             
-            {/* Google Maps Embed */}
+            {/* Google Maps Embed - Lazy Loading */}
             <div className="rounded-xl overflow-hidden shadow-md mb-6 aspect-video">
               <iframe 
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3556.8!2d-48.6319!3d-26.9878!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjbCsDU5JzE2LjEiUyA0OMKwMzgnMDkuMCJX!5e0!3m2!1spt-BR!2sbr!4v1600000000000!5m2!1spt-BR!2sbr"
@@ -416,17 +360,11 @@ export default function Contact() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
 
         {/* Clinic Photos Carousel */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-16"
-        >
+        <div className="mb-16">
           <h3 className="text-xl font-serif text-text-dark mb-6 font-bold text-center">Conheca o Espaco</h3>
           
           <div className="overflow-hidden rounded-2xl">
@@ -452,28 +390,19 @@ export default function Contact() {
               ))}
             </div>
           </div>
-        </motion.div>
+        </div>
 
         {/* 6 Link Cards */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
+        <div>
           <h3 className="text-xl font-serif text-text-dark mb-6 font-bold text-center">Explore Mais</h3>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {linkCards.map((card, index) => (
-              <motion.a
+            {linkCards.map((card) => (
+              <a
                 key={card.id}
                 href={card.href}
                 target={card.href.startsWith('http') ? '_blank' : undefined}
                 rel={card.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
                 className="link-card rounded-2xl h-48 shadow-lg overflow-hidden cursor-pointer"
                 style={{ backgroundColor: card.bg }}
               >
@@ -495,10 +424,10 @@ export default function Contact() {
                     Saiba mais <ArrowRight className="w-3 h-3" />
                   </span>
                 </div>
-              </motion.a>
+              </a>
             ))}
           </div>
-        </motion.div>
+        </div>
 
       </div>
     </section>

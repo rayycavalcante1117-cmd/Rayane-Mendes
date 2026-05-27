@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { useState, useEffect } from "react";
 import { Menu, X, Calendar } from "lucide-react";
 
 interface HeaderProps {
@@ -12,7 +11,7 @@ export default function Header({ onOpenBooking }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  useState(() => {
+  useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       
@@ -35,7 +34,7 @@ export default function Header({ onOpenBooking }: HeaderProps) {
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  });
+  }, [lastScrollY]);
 
   const scrollToSection = (id: string) => {
     setIsMobileMenuOpen(false);
@@ -58,14 +57,13 @@ export default function Header({ onOpenBooking }: HeaderProps) {
 
   return (
     <>
-      <motion.header
+      <header
         id="floating-header"
-        initial={{ y: 0, opacity: 1 }}
-        animate={{ 
-          y: isVisible ? 0 : -100,
-          opacity: isVisible ? 1 : 0
+        style={{
+          transform: isVisible ? 'translateY(0)' : 'translateY(-100px)',
+          opacity: isVisible ? 1 : 0,
+          transition: 'transform 0.35s ease-out, opacity 0.35s ease-out'
         }}
-        transition={{ duration: 0.35, ease: "easeOut" }}
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
           isScrolled 
             ? "mx-4 mt-4 rounded-2xl bg-white/95 backdrop-blur-md shadow-2xl border border-beige-warm py-3 px-6" 
@@ -147,18 +145,16 @@ export default function Header({ onOpenBooking }: HeaderProps) {
             </button>
           </div>
         </div>
-      </motion.header>
+      </header>
 
       {/* Mobile Menu Panel */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed top-20 left-4 right-4 z-30 bg-white border border-beige-warm rounded-2xl p-6 shadow-2xl backdrop-blur-lg md:hidden flex flex-col gap-6"
-          >
+      {isMobileMenuOpen && (
+        <div
+          className="fixed top-20 left-4 right-4 z-30 bg-white border border-beige-warm rounded-2xl p-6 shadow-2xl backdrop-blur-lg md:hidden flex flex-col gap-6"
+          style={{
+            animation: 'fade-in 0.3s ease-out'
+          }}
+        >
             <div className="flex flex-col gap-4">
               {navLinks.map((link) => (
                 <button
@@ -181,9 +177,8 @@ export default function Header({ onOpenBooking }: HeaderProps) {
               <Calendar className="w-4 h-4" />
               Quero comecar minha transformacao
             </button>
-          </motion.div>
+          </div>
         )}
-      </AnimatePresence>
     </>
   );
 }
