@@ -103,9 +103,9 @@ export default function Methodology() {
                 <h3 className="text-lg font-serif text-text-dark mb-2 group-hover:text-slate-med transition-colors duration-300 font-bold leading-tight">
                   {card.title}
                 </h3>
-                <h4 className="text-[10px] font-mono text-slate-med uppercase tracking-widest mb-4 font-bold">
+                <p className="text-[10px] font-mono text-slate-med uppercase tracking-widest mb-4 font-bold">
                   {card.subtitle}
-                </h4>
+                </p>
                 <p className="text-xs text-text-muted font-sans leading-relaxed mb-6">
                   {card.description}
                 </p>

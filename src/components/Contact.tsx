@@ -126,6 +126,7 @@ export default function Contact() {
               href="https://www.instagram.com/andressajuliana.psi"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Seguir Andressa Juliana no Instagram"
               className="social-card p-5 rounded-xl bg-white border border-beige-soft/50 shadow-sm flex flex-col items-center justify-center gap-3 text-center"
             >
               <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 via-pink-500 to-orange-400 flex items-center justify-center">
@@ -139,6 +140,7 @@ export default function Contact() {
               href="https://www.tiktok.com/@andressajuliana.psi"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Seguir Andressa Juliana no TikTok"
               className="social-card p-5 rounded-xl bg-white border border-beige-soft/50 shadow-sm flex flex-col items-center justify-center gap-3 text-center"
             >
               <div className="w-10 h-10 rounded-full bg-black flex items-center justify-center">
@@ -154,6 +156,7 @@ export default function Contact() {
               href="https://www.youtube.com/@andressajuliana.psicologa"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Inscrever-se no canal do YouTube de Andressa Juliana"
               className="social-card p-5 rounded-xl bg-white border border-beige-soft/50 shadow-sm flex flex-col items-center justify-center gap-3 text-center"
             >
               <div className="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center">
@@ -167,6 +170,7 @@ export default function Contact() {
             {/* Email */}
             <a 
               href="mailto:andressajuliana.psi@gmail.com"
+              aria-label="Enviar email para Andressa Juliana"
               className="social-card p-5 rounded-xl bg-white border border-beige-soft/50 shadow-sm flex flex-col items-center justify-center gap-3 text-center"
             >
               <div className="w-10 h-10 rounded-full bg-slate-med flex items-center justify-center">
@@ -318,7 +322,7 @@ export default function Contact() {
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="Localizacao Clinica"
+                title="Mapa com localizacao do consultorio da Psicologa Andressa Juliana no Edificio Riviera Concept, Itajai SC"
               />
             </div>
 
@@ -367,12 +371,14 @@ export default function Contact() {
         <div className="mb-16">
           <h3 className="text-xl font-serif text-text-dark mb-6 font-bold text-center">Conheca o Espaco</h3>
           
-          <div className="overflow-hidden rounded-2xl">
+          <div className="overflow-hidden rounded-2xl" role="region" aria-label="Galeria de fotos do consultorio">
             <div className="flex animate-scroll-clinic">
               {[...clinicPhotos, ...clinicPhotos].map((photo, index) => (
                 <div 
                   key={`${photo.id}-${index}`}
                   className="flex-shrink-0 w-72 h-48 mx-2 rounded-xl overflow-hidden group cursor-pointer"
+                  role="img"
+                  aria-label={`Foto do consultorio: ${photo.label.toLowerCase()}`}
                 >
                   <div 
                     className="w-full h-full flex items-center justify-center transition-transform duration-500 group-hover:scale-105"

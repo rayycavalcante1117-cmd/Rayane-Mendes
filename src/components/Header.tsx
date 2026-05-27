@@ -106,11 +106,12 @@ export default function Header({ onOpenBooking }: HeaderProps) {
           </div>
 
           {/* Desktop Nav Links */}
-          <nav className="hidden md:flex items-center gap-10">
+          <nav aria-label="Navegacao principal" className="hidden md:flex items-center gap-10">
             {navLinks.map((link) => (
               <button
                 key={link.target}
                 onClick={() => scrollToSection(link.target)}
+                aria-label={`Ir para secao ${link.name}`}
                 className={`text-xs font-mono font-medium uppercase tracking-widest transition-colors relative py-1 group cursor-pointer ${isScrolled ? 'text-text-muted hover:text-slate-med' : 'text-white/80 hover:text-white'}`}
               >
                 {link.name}
@@ -123,6 +124,7 @@ export default function Header({ onOpenBooking }: HeaderProps) {
           <div className="hidden md:flex items-center gap-4">
             <button
               onClick={onOpenBooking}
+              aria-label="Agendar consulta com Andressa Juliana"
               className={`px-5 py-2.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all duration-300 flex items-center gap-1.5 cursor-pointer font-bold ${
                 isScrolled 
                   ? 'bg-slate-med text-white hover:bg-slate-deep' 
@@ -139,7 +141,8 @@ export default function Header({ onOpenBooking }: HeaderProps) {
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className={`p-2 focus:outline-none ${isScrolled ? 'text-text-dark' : 'text-white'}`}
-              aria-label="Menu"
+              aria-label={isMobileMenuOpen ? "Fechar menu de navegacao" : "Abrir menu de navegacao"}
+              aria-expanded={isMobileMenuOpen}
             >
               {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>

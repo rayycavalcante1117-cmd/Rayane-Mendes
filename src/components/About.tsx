@@ -39,6 +39,8 @@ export default function About({ portraitPath }: AboutProps) {
               
               {/* Placeholder for photo */}
               <div 
+                role="img"
+                aria-label="Foto de Andressa Juliana de Oliveira, psicóloga clínica CRP-12/19715, especialista em Terapia Cognitivo-Comportamental"
                 style={{
                   backgroundColor: '#DDD3C7', 
                   color: '#2D466E', 

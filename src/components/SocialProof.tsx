@@ -152,7 +152,7 @@ export default function SocialProof() {
       <div className="max-w-7xl mx-auto px-6 md:px-8 relative z-10">
         
         {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
+        <header className="text-center max-w-2xl mx-auto mb-16">
           <span className="text-xs font-mono tracking-widest text-slate-med uppercase mb-2 block font-bold">Historias reais de transformacao</span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-text-dark tracking-tight">
             Resultados que mudam vidas
@@ -160,7 +160,7 @@ export default function SocialProof() {
           <p className="text-sm font-sans text-text-muted mt-4 leading-relaxed">
             Mais de 500 pacientes ja conquistaram mais clareza, autonomia e bem-estar com a TCC.
           </p>
-        </div>
+        </header>
 
       </div>
 

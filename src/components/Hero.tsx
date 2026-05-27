@@ -126,6 +126,8 @@ export default function Hero({ onOpenBooking }: HeroProps) {
           {/* Main Frame - Placeholder */}
           <div className="relative w-full max-w-sm sm:max-w-md lg:max-w-full aspect-[4/5] rounded-xl overflow-hidden shadow-2xl z-10 border-4 border-white/30">
             <div 
+              role="img"
+              aria-label="Andressa Juliana - Psicóloga Clínica especialista em Terapia Cognitivo-Comportamental"
               style={{
                 backgroundColor: '#DDD3C7', 
                 color: '#2D466E', 
