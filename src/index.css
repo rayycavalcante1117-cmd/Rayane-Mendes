@@ -130,6 +130,27 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
+/* Premium Floating Cards */
+.floating-card-premium {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 
+    0 4px 24px rgba(36, 57, 90, 0.08),
+    0 1px 4px rgba(36, 57, 90, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.floating-card-premium:hover {
+  box-shadow: 
+    0 8px 32px rgba(36, 57, 90, 0.12),
+    0 2px 8px rgba(36, 57, 90, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  transform: translateY(-2px);
+}
+
 /* Link card hover overlay */
 .link-card {
   position: relative;
@@ -173,4 +194,16 @@ body {
 .social-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 40px rgba(45, 70, 110, 0.15);
+}
+
+/* Social card list style */
+.social-card-list {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 1px 3px rgba(36, 57, 90, 0.04);
+}
+
+.social-card-list:hover {
+  background: white;
+  box-shadow: 0 8px 24px rgba(36, 57, 90, 0.08);
+  border-color: rgba(205, 190, 175, 0.5);
 }

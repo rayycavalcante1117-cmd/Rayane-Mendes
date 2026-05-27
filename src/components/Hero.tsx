@@ -58,31 +58,37 @@ export default function Hero({ onOpenBooking, bgImagePath }: HeroProps) {
         }} 
       />
 
-      {/* Floating Cards - Glassmorphism Style */}
-      <div className="absolute top-32 right-8 md:right-16 lg:right-24 z-20 animate-float hidden md:block">
-        <div className="glass-card px-5 py-3 rounded-2xl shadow-xl">
-          <div className="flex items-center gap-2">
-            <Sparkles className="w-4 h-4 text-slate-med" />
-            <span className="text-xs font-mono text-slate-deep font-bold uppercase tracking-wider">Atendimento Personalizado</span>
+      {/* Floating Cards - Premium Glassmorphism */}
+      <div className="absolute top-28 right-6 md:right-12 lg:right-20 z-20 animate-float hidden md:block">
+        <div className="floating-card-premium px-6 py-4 rounded-2xl">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 rounded-full bg-slate-deep/10 flex items-center justify-center">
+              <Sparkles className="w-4 h-4 text-slate-deep" />
+            </div>
+            <span className="text-xs font-mono text-slate-deep font-semibold uppercase tracking-wider">Atendimento Personalizado</span>
           </div>
         </div>
       </div>
 
-      <div className="absolute bottom-48 right-12 md:right-32 lg:right-48 z-20 animate-float-delayed hidden md:block">
-        <div className="glass-card px-5 py-3 rounded-2xl shadow-xl">
-          <div className="flex items-center gap-2">
-            <Heart className="w-4 h-4 text-slate-med" />
-            <span className="text-xs font-mono text-slate-deep font-bold uppercase tracking-wider">Ambiente Acolhedor e Seguro</span>
+      <div className="absolute top-56 right-4 md:right-8 lg:right-12 z-20 animate-float-delayed hidden md:block">
+        <div className="floating-card-premium px-6 py-4 rounded-2xl">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 rounded-full bg-slate-deep/10 flex items-center justify-center">
+              <Heart className="w-4 h-4 text-slate-deep" />
+            </div>
+            <span className="text-xs font-mono text-slate-deep font-semibold uppercase tracking-wider">Ambiente Acolhedor</span>
           </div>
         </div>
       </div>
 
-      {/* Card Modalidade - Flutuante com Glassmorphism */}
-      <div className="absolute bottom-32 left-8 md:left-16 lg:left-24 z-20 animate-float-slow hidden md:block">
-        <div className="glass-card px-5 py-3 rounded-2xl shadow-xl">
-          <div className="flex items-center gap-2">
-            <Video className="w-4 h-4 text-slate-med" />
-            <span className="text-xs font-mono text-slate-deep font-bold uppercase tracking-wider">Online & Presencial</span>
+      {/* Card Modalidade - Bottom Left */}
+      <div className="absolute bottom-40 left-6 md:left-12 lg:left-20 z-20 animate-float-slow hidden md:block">
+        <div className="floating-card-premium px-6 py-4 rounded-2xl">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 rounded-full bg-slate-deep/10 flex items-center justify-center">
+              <Video className="w-4 h-4 text-slate-deep" />
+            </div>
+            <span className="text-xs font-mono text-slate-deep font-semibold uppercase tracking-wider">Online & Presencial</span>
           </div>
         </div>
       </div>
@@ -170,7 +176,7 @@ export default function Hero({ onOpenBooking, bgImagePath }: HeroProps) {
 
         </motion.div>
 
-        {/* Image Block */}
+        {/* Image Block - Espaco reservado para imagem profissional */}
         <motion.div 
           initial={{ opacity: 0, x: 40, scale: 0.95 }}
           animate={{ opacity: 1, x: 0, scale: 1 }}
@@ -180,27 +186,19 @@ export default function Hero({ onOpenBooking, bgImagePath }: HeroProps) {
           {/* Decorative Backplate */}
           <div className="absolute -inset-4 border border-white/20 rounded-2xl pointer-events-none z-0 scale-95 md:scale-100" />
           
-          {/* Main Frame - Placeholder */}
-          <div className="relative w-full max-w-sm sm:max-w-md lg:max-w-full aspect-[4/5] rounded-xl overflow-hidden shadow-2xl z-10 border-4 border-white/30">
-            <div 
-              style={{
-                backgroundColor: '#DDD3C7', 
-                color: '#2D466E', 
-                display: 'flex',
-                alignItems: 'center', 
-                justifyContent: 'center', 
-                width: '100%', 
-                height: '100%',
-                minHeight: '200px', 
-                fontWeight: 'bold', 
-                fontSize: '1.2rem', 
-                letterSpacing: '2px'
-              }}
-            >
-              BANNER
+          {/* Main Frame - Espaco para foto da profissional */}
+          <div className="relative w-full max-w-sm sm:max-w-md lg:max-w-full aspect-[4/5] rounded-xl overflow-hidden shadow-2xl z-10 border-4 border-white/30 bg-gradient-to-br from-beige-warm/30 to-transparent">
+            {/* Placeholder elegante para adicionar foto */}
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-white/40">
+              <div className="w-20 h-20 rounded-full border-2 border-dashed border-white/30 flex items-center justify-center mb-4">
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <span className="text-xs font-mono tracking-widest uppercase">Foto Profissional</span>
             </div>
             
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-deep/50 via-transparent to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-deep/30 via-transparent to-transparent pointer-events-none" />
           </div>
 
           {/* Floating Accents */}

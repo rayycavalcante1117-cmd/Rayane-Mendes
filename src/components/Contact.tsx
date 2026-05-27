@@ -52,24 +52,24 @@ export default function Contact() {
 
   const whatsappUrl = "https://api.whatsapp.com/message/R3E54EV6ZAJTO1?autoload=1&app_absent=0";
 
-  // Clinic photos placeholders
+  // Clinic photos with images
   const clinicPhotos = [
-    { id: 1, label: "SALA DE ATENDIMENTO" },
-    { id: 2, label: "RECEPCAO" },
-    { id: 3, label: "AMBIENTE" },
-    { id: 4, label: "ESPACO" },
-    { id: 5, label: "DETALHES" },
-    { id: 6, label: "VISTA" },
+    { id: 1, label: "SALA DE ATENDIMENTO", image: "/images/clinic-1.jpg" },
+    { id: 2, label: "RECEPCAO", image: "/images/clinic-2.jpg" },
+    { id: 3, label: "AMBIENTE", image: "/images/clinic-3.jpg" },
+    { id: 4, label: "ESPACO", image: "/images/clinic-4.jpg" },
+    { id: 5, label: "DETALHES", image: "/images/clinic-5.jpg" },
+    { id: 6, label: "VISTA", image: "/images/clinic-6.jpg" },
   ];
 
-  // Link cards data
+  // Link cards data with images
   const linkCards = [
-    { id: 1, title: "Sobre a TCC", description: "Conheca a Terapia Cognitivo-Comportamental", href: "#servicos", bg: "#CDBEAF" },
-    { id: 2, title: "Supervisao Clinica", description: "Para psicologos que buscam aprimoramento", href: "#servicos", bg: "#DDD3C7" },
-    { id: 3, title: "Cursos e Formacoes", description: "Capacitacoes baseadas em evidencias", href: "#servicos", bg: "#5B6F8F" },
-    { id: 4, title: "Depoimentos", description: "O que dizem nossos pacientes", href: "#depoimentos", bg: "#2D466E" },
-    { id: 5, title: "Quem Sou", description: "Minha trajetoria profissional", href: "#sobre", bg: "#24395A" },
-    { id: 6, title: "Agende sua Consulta", description: "De o primeiro passo agora", href: whatsappUrl, bg: "#CDBEAF" },
+    { id: 1, title: "Sobre a TCC", description: "Conheca a Terapia Cognitivo-Comportamental", href: "#servicos", image: "/images/link-tcc.jpg" },
+    { id: 2, title: "Supervisao Clinica", description: "Para psicologos que buscam aprimoramento", href: "#servicos", image: "/images/link-supervision.jpg" },
+    { id: 3, title: "Cursos e Formacoes", description: "Capacitacoes baseadas em evidencias", href: "#servicos", image: "/images/link-courses.jpg" },
+    { id: 4, title: "Depoimentos", description: "O que dizem nossos pacientes", href: "#depoimentos", image: "/images/link-testimonials.jpg" },
+    { id: 5, title: "Quem Sou", description: "Minha trajetoria profissional", href: "#sobre", image: "/images/link-about.jpg" },
+    { id: 6, title: "Agende sua Consulta", description: "De o primeiro passo agora", href: whatsappUrl, image: "/images/link-booking.jpg" },
   ];
 
   return (
@@ -132,23 +132,27 @@ export default function Contact() {
             </div>
           </motion.div>
 
-          {/* Social Cards Grid - A direita */}
-          <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-4 gap-4">
+          {/* Social Cards - Lista vertical minimalista */}
+          <div className="lg:col-span-7 flex flex-col gap-3">
             {/* Instagram */}
             <motion.a 
               href="https://www.instagram.com/andressajuliana.psi"
               target="_blank"
               rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: 0.1 }}
-              className="social-card p-5 rounded-xl bg-white border border-beige-soft/50 shadow-sm flex flex-col items-center justify-center gap-3 text-center"
+              className="social-card-list p-4 rounded-xl bg-white border border-beige-soft/30 flex items-center gap-4 group"
             >
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 via-pink-500 to-orange-400 flex items-center justify-center">
+              <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-purple-500 via-pink-500 to-orange-400 flex items-center justify-center flex-shrink-0">
                 <Instagram className="w-5 h-5 text-white" />
               </div>
-              <span className="text-xs font-mono text-text-dark font-bold uppercase tracking-wider">Instagram</span>
+              <div className="flex-1">
+                <span className="text-sm font-sans text-text-dark font-semibold block">Instagram</span>
+                <span className="text-xs text-text-muted">@andressajuliana.psi</span>
+              </div>
+              <ArrowRight className="w-4 h-4 text-text-muted group-hover:text-slate-deep group-hover:translate-x-1 transition-all" />
             </motion.a>
 
             {/* TikTok */}
@@ -156,18 +160,22 @@ export default function Contact() {
               href="https://www.tiktok.com/@andressajuliana.psi"
               target="_blank"
               rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: 0.2 }}
-              className="social-card p-5 rounded-xl bg-white border border-beige-soft/50 shadow-sm flex flex-col items-center justify-center gap-3 text-center"
+              transition={{ duration: 0.4, delay: 0.15 }}
+              className="social-card-list p-4 rounded-xl bg-white border border-beige-soft/30 flex items-center gap-4 group"
             >
-              <div className="w-10 h-10 rounded-full bg-black flex items-center justify-center">
+              <div className="w-11 h-11 rounded-xl bg-black flex items-center justify-center flex-shrink-0">
                 <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
                 </svg>
               </div>
-              <span className="text-xs font-mono text-text-dark font-bold uppercase tracking-wider">TikTok</span>
+              <div className="flex-1">
+                <span className="text-sm font-sans text-text-dark font-semibold block">TikTok</span>
+                <span className="text-xs text-text-muted">@andressajuliana.psi</span>
+              </div>
+              <ArrowRight className="w-4 h-4 text-text-muted group-hover:text-slate-deep group-hover:translate-x-1 transition-all" />
             </motion.a>
 
             {/* YouTube */}
@@ -175,33 +183,41 @@ export default function Contact() {
               href="https://www.youtube.com/@andressajuliana.psicologa"
               target="_blank"
               rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: 0.3 }}
-              className="social-card p-5 rounded-xl bg-white border border-beige-soft/50 shadow-sm flex flex-col items-center justify-center gap-3 text-center"
+              transition={{ duration: 0.4, delay: 0.2 }}
+              className="social-card-list p-4 rounded-xl bg-white border border-beige-soft/30 flex items-center gap-4 group"
             >
-              <div className="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center">
+              <div className="w-11 h-11 rounded-xl bg-red-600 flex items-center justify-center flex-shrink-0">
                 <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
                 </svg>
               </div>
-              <span className="text-xs font-mono text-text-dark font-bold uppercase tracking-wider">YouTube</span>
+              <div className="flex-1">
+                <span className="text-sm font-sans text-text-dark font-semibold block">YouTube</span>
+                <span className="text-xs text-text-muted">@andressajuliana.psicologa</span>
+              </div>
+              <ArrowRight className="w-4 h-4 text-text-muted group-hover:text-slate-deep group-hover:translate-x-1 transition-all" />
             </motion.a>
 
             {/* Email */}
             <motion.a 
               href="mailto:andressajuliana.psi@gmail.com"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: 0.4 }}
-              className="social-card p-5 rounded-xl bg-white border border-beige-soft/50 shadow-sm flex flex-col items-center justify-center gap-3 text-center"
+              transition={{ duration: 0.4, delay: 0.25 }}
+              className="social-card-list p-4 rounded-xl bg-white border border-beige-soft/30 flex items-center gap-4 group"
             >
-              <div className="w-10 h-10 rounded-full bg-slate-med flex items-center justify-center">
+              <div className="w-11 h-11 rounded-xl bg-slate-med flex items-center justify-center flex-shrink-0">
                 <Mail className="w-5 h-5 text-white" />
               </div>
-              <span className="text-xs font-mono text-text-dark font-bold uppercase tracking-wider">E-mail</span>
+              <div className="flex-1">
+                <span className="text-sm font-sans text-text-dark font-semibold block">E-mail</span>
+                <span className="text-xs text-text-muted">andressajuliana.psi@gmail.com</span>
+              </div>
+              <ArrowRight className="w-4 h-4 text-text-muted group-hover:text-slate-deep group-hover:translate-x-1 transition-all" />
             </motion.a>
           </div>
         </div>
@@ -434,20 +450,13 @@ export default function Contact() {
               {[...clinicPhotos, ...clinicPhotos].map((photo, index) => (
                 <div 
                   key={`${photo.id}-${index}`}
-                  className="flex-shrink-0 w-72 h-48 mx-2 rounded-xl overflow-hidden group cursor-pointer"
+                  className="flex-shrink-0 w-72 h-48 mx-2 rounded-xl overflow-hidden group cursor-pointer shadow-md"
                 >
-                  <div 
-                    className="w-full h-full flex items-center justify-center transition-transform duration-500 group-hover:scale-105"
-                    style={{
-                      backgroundColor: index % 2 === 0 ? '#CDBEAF' : '#DDD3C7',
-                      color: '#2D466E',
-                      fontWeight: 'bold',
-                      fontSize: '0.75rem',
-                      letterSpacing: '2px'
-                    }}
-                  >
-                    {photo.label}
-                  </div>
+                  <img 
+                    src={photo.image}
+                    alt={photo.label}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
                 </div>
               ))}
             </div>
@@ -474,15 +483,18 @@ export default function Contact() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="link-card rounded-2xl h-48 shadow-lg overflow-hidden cursor-pointer"
-                style={{ backgroundColor: card.bg }}
+                className="link-card rounded-2xl h-48 shadow-lg overflow-hidden cursor-pointer relative"
               >
-                {/* Card content area */}
-                <div className="w-full h-full flex items-center justify-center">
-                  <span 
-                    className="text-xs font-mono uppercase tracking-widest font-bold"
-                    style={{ color: ['#24395A', '#2D466E', '#5B6F8F'].includes(card.bg) ? 'white' : '#2D466E' }}
-                  >
+                {/* Background Image */}
+                <img 
+                  src={card.image}
+                  alt={card.title}
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+                
+                {/* Card title overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-deep/70 via-slate-deep/20 to-transparent flex items-end p-5">
+                  <span className="text-sm font-mono uppercase tracking-widest font-bold text-white">
                     {card.title}
                   </span>
                 </div>
