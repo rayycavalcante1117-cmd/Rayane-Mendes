@@ -7,17 +7,21 @@
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 
   /* Paleta Andressa Juliana - Psicologia Clínica */
-  --color-slate-deep: #DDD3C7;      /* Bege aconchegante - fundo principal */
-  --color-slate-med: #C5B9AC;       /* Bege médio - secundário */
-  --color-muted-steel: #6B6B6B;     /* Cinza médio - texto suave */
-  --color-off-white: #2C2C2C;       /* Quase preto - texto principal */
-  --color-champagne: #2D466E;       /* Azul profissional - destaques/botões */
+  --color-beige-warm: #DDD3C7;        /* Bege aconchegante - protagonista */
+  --color-beige-light: #EDE8E2;       /* Bege claro */
+  --color-slate-deep: #24395A;        /* Azul escuro profissional */
+  --color-slate-med: #2D466E;         /* Azul médio - destaques */
+  --color-muted-steel: #5B6F8F;       /* Azul acinzentado - apoio */
+  --color-off-white: #FAFAFA;         /* Branco suave */
+  --color-text-dark: #2C2C2C;         /* Texto principal */
+  --color-text-muted: #6B6B6B;        /* Texto suave */
+  --color-champagne: #2D466E;         /* Alias para destaques */
 }
 
 /* Base style modifications to support a welcoming feeling */
 body {
-  background-color: var(--color-slate-deep);
-  color: var(--color-off-white);
+  background-color: var(--color-beige-warm);
+  color: var(--color-text-dark);
   font-family: var(--font-sans);
   overflow-x: hidden;
 }
@@ -27,12 +31,80 @@ body {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--color-slate-deep);
+  background: var(--color-beige-warm);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-slate-med);
+  background: var(--color-muted-steel);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-muted-steel);
+  background: var(--color-slate-med);
+}
+
+/* Glow effect for buttons */
+@keyframes subtle-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(45, 70, 110, 0.3); }
+  50% { box-shadow: 0 0 30px rgba(45, 70, 110, 0.5); }
+}
+
+.btn-glow {
+  animation: subtle-glow 2s ease-in-out infinite;
+}
+
+/* Floating animation for cards */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes float-delayed {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float-delayed 5s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+/* Shimmer effect for premium feel */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.shimmer-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 3s infinite;
+  pointer-events: none;
+}
+
+/* Infinite carousel animation */
+@keyframes scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-scroll-left {
+  animation: scroll-left 30s linear infinite;
+}
+
+.animate-scroll-left:hover {
+  animation-play-state: paused;
 }

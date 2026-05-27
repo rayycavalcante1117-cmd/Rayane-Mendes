@@ -11,7 +11,7 @@ export default function WhatsAppButton() {
         initial={{ opacity: 0, x: 20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 1.5, duration: 0.8 }}
-        className="hidden md:flex items-center px-4 py-2 rounded-xl bg-white border border-champagne/30 text-off-white text-[11px] font-mono tracking-wider shadow-lg pointer-events-none uppercase font-bold"
+        className="hidden md:flex items-center px-4 py-2 rounded-xl bg-white border border-beige-warm text-text-dark text-[11px] font-mono tracking-wider shadow-lg pointer-events-none uppercase font-bold"
       >
         <div className="w-1.5 h-1.5 rounded-full bg-[#25D366] animate-ping mr-2" />
         Fale comigo

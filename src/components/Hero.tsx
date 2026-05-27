@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { ArrowUpRight, ShieldCheck } from "lucide-react";
+import { Sparkles, Heart } from "lucide-react";
 
 interface HeroProps {
   onOpenBooking: () => void;
@@ -39,14 +39,43 @@ export default function Hero({ onOpenBooking, bgImagePath }: HeroProps) {
   return (
     <section 
       id="home" 
-      className="relative min-h-screen pt-28 pb-16 md:pt-36 md:pb-24 flex items-center overflow-hidden bg-slate-deep text-off-white"
+      className="relative min-h-screen pt-28 pb-16 md:pt-36 md:pb-24 flex items-center overflow-hidden"
     >
-      {/* Subtle background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-deep via-slate-deep to-slate-med/40 pointer-events-none z-0" />
+      {/* Gradient background - azul para cinza claro */}
+      <div 
+        className="absolute inset-0 pointer-events-none z-0"
+        style={{
+          background: 'linear-gradient(135deg, #24395A 0%, #2D466E 30%, #5B6F8F 60%, #DDD3C7 100%)'
+        }}
+      />
       
-      {/* Decorative circles */}
-      <div className="absolute -top-40 -left-40 w-96 h-96 rounded-full bg-slate-med/15 blur-3xl pointer-events-none" />
-      <div className="absolute top-1/2 -right-20 w-80 h-80 rounded-full bg-muted-steel/10 blur-3xl pointer-events-none" />
+      {/* Subtle overlay pattern */}
+      <div 
+        className="absolute inset-0 opacity-5 pointer-events-none z-0" 
+        style={{ 
+          backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
+          backgroundSize: '32px 32px'
+        }} 
+      />
+
+      {/* Floating Cards - Animacao continua */}
+      <div className="absolute top-32 right-8 md:right-16 lg:right-24 z-20 animate-float hidden md:block">
+        <div className="px-5 py-3 bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl border border-white/50">
+          <div className="flex items-center gap-2">
+            <Sparkles className="w-4 h-4 text-slate-med" />
+            <span className="text-xs font-mono text-slate-deep font-bold uppercase tracking-wider">Atendimento Personalizado</span>
+          </div>
+        </div>
+      </div>
+
+      <div className="absolute bottom-40 right-12 md:right-32 lg:right-48 z-20 animate-float-delayed hidden md:block">
+        <div className="px-5 py-3 bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl border border-white/50">
+          <div className="flex items-center gap-2">
+            <Heart className="w-4 h-4 text-slate-med" />
+            <span className="text-xs font-mono text-slate-deep font-bold uppercase tracking-wider">Ambiente Acolhedor e Seguro</span>
+          </div>
+        </div>
+      </div>
 
       <div className="max-w-7xl mx-auto px-6 md:px-8 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center relative z-10">
         
@@ -62,7 +91,7 @@ export default function Hero({ onOpenBooking, bgImagePath }: HeroProps) {
             variants={itemVariants} 
             className="flex items-center gap-2 mb-6"
           >
-            <span className="inline-block px-3 py-1 bg-slate-med/80 text-champagne text-[10px] uppercase tracking-[0.2em] font-bold border border-champagne/20 rounded-sm">
+            <span className="inline-block px-4 py-1.5 bg-white/20 backdrop-blur-sm text-white text-[10px] uppercase tracking-[0.2em] font-bold border border-white/30 rounded-full">
               Terapia Cognitivo-Comportamental
             </span>
           </motion.div>
@@ -71,68 +100,60 @@ export default function Hero({ onOpenBooking, bgImagePath }: HeroProps) {
           <div className="overflow-hidden mb-6">
             <motion.h1 
               variants={textRevealVariants}
-              className="text-4xl sm:text-5xl lg:text-6xl font-serif text-off-white tracking-tight leading-[1.1]"
+              className="text-4xl sm:text-5xl lg:text-6xl font-serif text-white tracking-tight leading-[1.1]"
             >
-              Aprenda a lidar com as suas <span className="italic font-normal text-champagne">emoções</span> e melhore sua autoconfiança.
+              Conquiste <span className="italic font-normal text-beige-warm">clareza emocional</span> e transforme sua relacao consigo e com o mundo.
             </motion.h1>
           </div>
 
-          {/* Subtítulo */}
+          {/* Subtítulo com copy mais forte */}
           <motion.p 
             variants={itemVariants}
-            className="text-base sm:text-lg text-muted-steel font-sans mb-4 leading-relaxed max-w-xl"
+            className="text-lg sm:text-xl text-white/90 font-sans mb-4 leading-relaxed max-w-xl font-medium"
           >
-            <strong className="text-off-white">Se torne a sua melhor versão.</strong>
+            Chega de se sentir refem da ansiedade, da inseguranca ou de padroes que te travam.
           </motion.p>
           <motion.p 
             variants={itemVariants}
-            className="text-base sm:text-lg text-muted-steel font-sans mb-8 leading-relaxed max-w-xl"
+            className="text-base text-white/70 font-sans mb-10 leading-relaxed max-w-xl"
           >
-            A Terapia Cognitivo-Comportamental tem como objetivo que você aprenda ferramentas e estratégias para alcançar uma melhora nos seus sintomas, desenvolva novas habilidades e adquira autonomia.
+            Com a Terapia Cognitivo-Comportamental, voce aprende ferramentas praticas para reduzir sintomas, desenvolver novas habilidades e retomar o controle da sua vida.
           </motion.p>
 
-          {/* CTA Buttons */}
+          {/* CTA Button - Copy mais forte com efeito visual */}
           <motion.div 
             variants={itemVariants}
             className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4"
           >
             <button
               onClick={onOpenBooking}
-              className="px-8 py-4 bg-champagne text-white border border-champagne rounded-full text-xs font-mono tracking-widest uppercase hover:bg-champagne/90 hover:shadow-2xl transition-all duration-300 flex items-center justify-center gap-2 group cursor-pointer font-bold"
+              className="px-10 py-5 bg-white text-slate-deep border-2 border-white rounded-full text-xs font-mono tracking-widest uppercase hover:bg-beige-warm hover:border-beige-warm hover:shadow-2xl transition-all duration-300 flex items-center justify-center gap-2 group cursor-pointer font-bold shimmer-btn btn-glow"
             >
-              Agendar minha consulta
-              <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              Quero comecar minha transformacao
             </button>
-            
-            <a
-              href="#servicos"
-              className="px-6 py-4 border border-champagne/50 text-champagne hover:bg-champagne/10 hover:border-champagne rounded-full text-xs font-mono tracking-widest uppercase text-center transition-all duration-300 cursor-pointer"
-            >
-              Conhecer Serviços
-            </a>
           </motion.div>
 
-          {/* Trust Indicators */}
+          {/* Trust Indicators - Simplificado */}
           <motion.div 
             variants={itemVariants}
-            className="mt-12 pt-8 border-t border-slate-med/60 grid grid-cols-2 md:grid-cols-3 gap-6"
+            className="mt-14 pt-8 border-t border-white/20 grid grid-cols-2 md:grid-cols-3 gap-6"
           >
             <div>
-              <span className="text-xs font-mono text-champagne uppercase block mb-1 font-bold">Registro</span>
-              <span className="text-xs text-muted-steel font-serif leading-tight block">
-                CRP-12/19715<br />Conselho Regional SC
+              <span className="text-2xl font-serif text-white font-bold block">+500</span>
+              <span className="text-[10px] text-white/60 font-mono uppercase tracking-widest block mt-1">
+                Pacientes atendidos
               </span>
             </div>
             <div>
-              <span className="text-xs font-mono text-champagne uppercase block mb-1 font-bold">Modalidade</span>
-              <span className="text-xs text-muted-steel font-serif leading-tight block">
-                Online & Presencial<br />Flexibilidade total
+              <span className="text-2xl font-serif text-white font-bold block">Online & Presencial</span>
+              <span className="text-[10px] text-white/60 font-mono uppercase tracking-widest block mt-1">
+                Flexibilidade total
               </span>
             </div>
             <div className="col-span-2 md:col-span-1">
-              <span className="text-xs font-mono text-champagne uppercase block mb-1 font-bold">Especialidade</span>
-              <span className="text-xs text-muted-steel font-serif leading-tight block">
-                TCC & DBT<br />Baseada em Evidências
+              <span className="text-2xl font-serif text-white font-bold block">TCC & DBT</span>
+              <span className="text-[10px] text-white/60 font-mono uppercase tracking-widest block mt-1">
+                Baseada em Evidencias
               </span>
             </div>
           </motion.div>
@@ -147,10 +168,10 @@ export default function Hero({ onOpenBooking, bgImagePath }: HeroProps) {
           className="lg:col-span-5 relative flex justify-center items-center"
         >
           {/* Decorative Backplate */}
-          <div className="absolute -inset-4 border border-champagne/15 rounded-2xl pointer-events-none z-0 scale-95 md:scale-100" />
+          <div className="absolute -inset-4 border border-white/20 rounded-2xl pointer-events-none z-0 scale-95 md:scale-100" />
           
           {/* Main Frame - Placeholder for banner */}
-          <div className="relative w-full max-w-sm sm:max-w-md lg:max-w-full aspect-[4/5] rounded-xl overflow-hidden shadow-2xl z-10 border-4 border-slate-deep bg-slate-med/20">
+          <div className="relative w-full max-w-sm sm:max-w-md lg:max-w-full aspect-[4/5] rounded-xl overflow-hidden shadow-2xl z-10 border-4 border-white/30">
             {/* Placeholder Banner */}
             <div 
               style={{
@@ -170,37 +191,26 @@ export default function Hero({ onOpenBooking, bgImagePath }: HeroProps) {
               BANNER
             </div>
             
-            {/* Dark elegant mask overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-deep/40 via-transparent to-transparent pointer-events-none" />
-            
-            {/* Visual Badge */}
-            <div className="absolute bottom-6 left-6 p-4 rounded-xl bg-white/95 backdrop-blur-md border border-champagne/20 shadow-2xl max-w-[240px]">
-              <div className="flex items-center gap-2 mb-1.5">
-                <ShieldCheck className="w-4 h-4 text-champagne" />
-                <span className="text-[10px] font-mono tracking-widest text-champagne uppercase font-bold">Atendimento</span>
-              </div>
-              <p className="text-xs text-muted-steel font-serif leading-snug">
-                Ambiente acolhedor e sigiloso para o seu processo terapêutico.
-              </p>
-            </div>
+            {/* Elegant overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-deep/50 via-transparent to-transparent pointer-events-none" />
           </div>
 
           {/* Floating Accents */}
-          <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-champagne/10 rounded-3xl blur-md -z-10" />
-          <div className="absolute bottom-12 -left-8 w-16 h-40 bg-slate-med/25 border-l border-champagne/10 rounded-full -z-10 hidden md:block" />
+          <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-white/10 rounded-3xl blur-md -z-10" />
+          <div className="absolute bottom-12 -left-8 w-16 h-40 bg-white/10 border-l border-white/20 rounded-full -z-10 hidden md:block" />
 
         </motion.div>
       </div>
 
       {/* Scroll Indicator */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5">
-        <span className="text-[9px] font-mono tracking-widest text-muted-steel uppercase">Rolagem</span>
+        <span className="text-[9px] font-mono tracking-widest text-white/50 uppercase">Rolagem</span>
         <motion.div 
           animate={{ y: [0, 6, 0] }}
           transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
-          className="w-1.5 h-6 bg-slate-med/80 rounded-full relative overflow-hidden border border-champagne/25"
+          className="w-1.5 h-6 bg-white/30 rounded-full relative overflow-hidden border border-white/40"
         >
-          <div className="absolute top-0 left-0 right-0 h-2 bg-champagne rounded-full" />
+          <div className="absolute top-0 left-0 right-0 h-2 bg-white rounded-full" />
         </motion.div>
       </div>
     </section>

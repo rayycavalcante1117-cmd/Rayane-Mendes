@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { Quote, ShieldCheck, GraduationCap, Award } from "lucide-react";
+import { Quote, GraduationCap, Award, ShieldCheck } from "lucide-react";
 
 interface AboutProps {
   portraitPath: string;
@@ -8,28 +8,26 @@ interface AboutProps {
 export default function About({ portraitPath }: AboutProps) {
   const credentials = [
     {
-      icon: <GraduationCap className="w-5 h-5 text-champagne" />,
-      title: "Formação Especializada",
-      description: "Especialista em TCC e terapeuta certificada pela Federação Brasileira de Terapias Cognitiva."
+      icon: <GraduationCap className="w-5 h-5 text-slate-med" />,
+      title: "Formacao Especializada",
+      description: "Especialista em TCC e terapeuta certificada pela Federacao Brasileira de Terapias Cognitiva."
     },
     {
-      icon: <Award className="w-5 h-5 text-champagne" />,
-      title: "Terapia Dialética (DBT)",
-      description: "Formada em Terapia Comportamental Dialética pelo Behavioral Tech e especializanda na abordagem."
+      icon: <Award className="w-5 h-5 text-slate-med" />,
+      title: "Terapia Dialetica (DBT)",
+      description: "Formada em Terapia Comportamental Dialetica pelo Behavioral Tech e especializanda na abordagem."
     },
     {
-      icon: <ShieldCheck className="w-5 h-5 text-champagne" />,
+      icon: <ShieldCheck className="w-5 h-5 text-slate-med" />,
       title: "Professora e Supervisora",
-      description: "Atuo como professora e supervisora clínica, orientando profissionais na Psicologia Baseada em Evidências."
+      description: "Atuo como professora e supervisora clinica, orientando profissionais na Psicologia Baseada em Evidencias."
     }
   ];
 
   return (
-    <section id="sobre" className="py-24 bg-slate-deep relative overflow-hidden border-t border-slate-med/40">
-      {/* Editorial Watermark background */}
-      <div className="absolute -right-20 bottom-1/4 select-none opacity-[0.015] pointer-events-none text-[120px] lg:text-[180px] font-serif font-black uppercase text-off-white leading-none">
-        Andressa
-      </div>
+    <section id="sobre" className="py-24 bg-white relative overflow-hidden">
+      {/* Top accent line */}
+      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-beige-warm via-slate-med to-beige-warm" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-8 relative z-10 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
@@ -41,10 +39,10 @@ export default function About({ portraitPath }: AboutProps) {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
-              className="relative aspect-[3/4] w-full max-w-sm sm:max-w-md mx-auto rounded-2xl overflow-hidden shadow-2xl border border-champagne/20 bg-slate-med/10 p-3"
+              className="relative aspect-[3/4] w-full max-w-sm sm:max-w-md mx-auto rounded-2xl overflow-hidden shadow-2xl border border-beige-warm p-3 bg-beige-light"
             >
               {/* Outer frames */}
-              <div className="absolute inset-0 border border-champagne/15 rounded-2xl pointer-events-none z-10" />
+              <div className="absolute inset-0 border border-slate-med/15 rounded-2xl pointer-events-none z-10" />
               
               {/* Placeholder for photo */}
               <div 
@@ -67,16 +65,16 @@ export default function About({ portraitPath }: AboutProps) {
               </div>
 
               {/* Caption over photo */}
-              <div className="absolute bottom-6 left-6 right-6 p-4 rounded-xl bg-white/95 backdrop-blur-md text-off-white border border-champagne/25 hidden sm:block">
-                <span className="text-[10px] font-mono tracking-[0.2em] text-champagne uppercase block mb-1 font-bold">Psicóloga Clínica</span>
-                <span className="text-sm font-serif block font-bold text-off-white">Andressa Juliana de Oliveira</span>
-                <span className="text-[10px] font-mono block text-muted-steel">CRP-12/19715</span>
+              <div className="absolute bottom-6 left-6 right-6 p-4 rounded-xl bg-white/95 backdrop-blur-md border border-beige-warm hidden sm:block">
+                <span className="text-[10px] font-mono tracking-[0.2em] text-slate-med uppercase block mb-1 font-bold">Psicologa Clinica</span>
+                <span className="text-sm font-serif block font-bold text-text-dark">Andressa Juliana de Oliveira</span>
+                <span className="text-[10px] font-mono block text-text-muted">CRP-12/19715</span>
               </div>
             </motion.div>
 
             {/* Decorative Frame Layout */}
-            <div className="absolute -top-6 -left-6 w-32 h-32 border-t border-l border-champagne/20 rounded-tl-2xl -z-1" />
-            <div className="absolute -bottom-6 -right-6 w-32 h-32 border-b border-r border-champagne/20 rounded-br-2xl -z-1" />
+            <div className="absolute -top-6 -left-6 w-32 h-32 border-t border-l border-slate-med/20 rounded-tl-2xl -z-1" />
+            <div className="absolute -bottom-6 -right-6 w-32 h-32 border-b border-r border-slate-med/20 rounded-br-2xl -z-1" />
           </div>
 
           {/* Content - Right side */}
@@ -84,8 +82,8 @@ export default function About({ portraitPath }: AboutProps) {
             
             {/* Top Tag */}
             <div className="flex items-center gap-2 mb-4">
-              <span className="text-xs font-mono tracking-widest text-champagne uppercase font-bold">Quem sou</span>
-              <span className="h-[1px] w-12 bg-champagne/30" />
+              <span className="text-xs font-mono tracking-widest text-slate-med uppercase font-bold">Quem sou</span>
+              <span className="h-[1px] w-12 bg-slate-med/30" />
             </div>
 
             <motion.h2 
@@ -93,9 +91,9 @@ export default function About({ portraitPath }: AboutProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="text-3xl sm:text-4xl lg:text-5xl font-serif text-off-white tracking-tight mb-6 leading-tight"
+              className="text-3xl sm:text-4xl lg:text-5xl font-serif text-text-dark tracking-tight mb-6 leading-tight"
             >
-              Andressa Juliana de Oliveira
+              Prazer, sou a Andressa
             </motion.h2>
 
             <motion.p 
@@ -103,7 +101,7 @@ export default function About({ portraitPath }: AboutProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.05 }}
-              className="text-sm text-champagne font-mono uppercase tracking-widest mb-6 font-bold"
+              className="text-sm text-slate-med font-mono uppercase tracking-widest mb-6 font-bold"
             >
               CRP-12/19715
             </motion.p>
@@ -113,26 +111,26 @@ export default function About({ portraitPath }: AboutProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.1 }}
-              className="text-sm sm:text-base text-muted-steel font-sans space-y-4 mb-8 leading-relaxed"
+              className="text-sm sm:text-base text-text-muted font-sans space-y-4 mb-8 leading-relaxed"
             >
               <p>
-                Sou psicóloga graduada pela <strong className="text-off-white">UNIVALI</strong>, especialista em <strong className="text-off-white">Terapia Cognitivo-Comportamental</strong> e terapeuta certificada pela <strong className="text-off-white">Federação Brasileira de Terapias Cognitiva</strong>. Sou formada em <strong className="text-off-white">Terapia Comportamental Dialética</strong> pelo Behavioral Tech e especializanda nesta abordagem.
+                Sou psicologa graduada pela <strong className="text-text-dark">UNIVALI</strong>, especialista em <strong className="text-text-dark">Terapia Cognitivo-Comportamental</strong> e terapeuta certificada pela <strong className="text-text-dark">Federacao Brasileira de Terapias Cognitiva</strong>.
               </p>
               <p>
-                Além disso, possuo formação em <strong className="text-off-white">Psicopatologia</strong> e <strong className="text-off-white">Avaliação e Manejo do Comportamento Suicida</strong>.
+                Sou formada em <strong className="text-text-dark">Terapia Comportamental Dialetica</strong> pelo Behavioral Tech e possuo formacao em <strong className="text-text-dark">Psicopatologia</strong> e <strong className="text-text-dark">Avaliacao e Manejo do Comportamento Suicida</strong>.
               </p>
               <p>
-                Além de psicóloga, atuo como professora e supervisora clínica, orientando outros psicólogos na atuação baseada na <strong className="text-off-white">Psicologia Baseada em Evidências</strong>.
+                Alem de psicologa, atuo como <strong className="text-text-dark">professora e supervisora clinica</strong>, orientando outros psicologos na atuacao baseada em evidencias cientificas.
               </p>
             </motion.div>
 
             {/* Credentials grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 pt-6 border-t border-slate-med/60">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 pt-6 border-t border-beige-warm">
               {credentials.map((cred) => (
-                <div key={cred.title} className="text-left">
+                <div key={cred.title} className="text-left p-4 rounded-xl bg-beige-light/50">
                   <div className="mb-2">{cred.icon}</div>
-                  <h4 className="text-xs font-mono font-bold text-off-white uppercase tracking-widest mb-1">{cred.title}</h4>
-                  <p className="text-xs text-muted-steel font-sans leading-relaxed">{cred.description}</p>
+                  <h4 className="text-xs font-mono font-bold text-text-dark uppercase tracking-widest mb-1">{cred.title}</h4>
+                  <p className="text-xs text-text-muted font-sans leading-relaxed">{cred.description}</p>
                 </div>
               ))}
             </div>
@@ -143,14 +141,14 @@ export default function About({ portraitPath }: AboutProps) {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="p-6 rounded-xl bg-white/60 border-l-4 border-champagne flex gap-4 items-start"
+              className="p-6 rounded-xl bg-gradient-to-r from-slate-deep to-slate-med flex gap-4 items-start"
             >
-              <Quote className="w-8 h-8 text-champagne flex-shrink-0" />
+              <Quote className="w-8 h-8 text-white/50 flex-shrink-0" />
               <div>
-                <p className="italic text-base text-off-white leading-relaxed font-serif">
-                  {'"A Terapia Cognitivo-Comportamental tem como objetivo que você aprenda ferramentas e estratégias para alcançar uma melhora nos seus sintomas, desenvolva novas habilidades e adquira autonomia."'}
+                <p className="italic text-base text-white leading-relaxed font-serif">
+                  {'"Meu objetivo e que voce saia de cada sessao com ferramentas praticas para aplicar no seu dia a dia - e nao apenas se sentir acolhido, mas realmente transformar sua vida."'}
                 </p>
-                <span className="block text-[10px] font-mono text-champagne uppercase mt-2 tracking-widest font-bold">— Andressa Juliana, CRP-12/19715</span>
+                <span className="block text-[10px] font-mono text-white/70 uppercase mt-2 tracking-widest font-bold">- Andressa Juliana</span>
               </div>
             </motion.div>
 
