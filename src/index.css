@@ -6,34 +6,171 @@
   --font-serif: "Playfair Display", ui-serif, Georgia, serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 
-  /* The Deep Sanctuary Palette */
-  --color-slate-deep: #0F172A;
-  --color-slate-med: #1E293B;
-  --color-muted-steel: #94A3B8;
-  --color-off-white: #F8FAFC;
-  --color-champagne: #D1BFA7;
+  /* Paleta Andressa Juliana - Premium */
+  --color-beige-cream: #F5F1EA;       /* Creme suave */
+  --color-beige-warm: #DDD3C7;        /* Bege aconchegante */
+  --color-beige-soft: #CDBEAF;        /* Bege medio */
+  --color-slate-deep: #24395A;        /* Azul escuro profissional */
+  --color-slate-med: #2D466E;         /* Azul médio - destaques */
+  --color-muted-steel: #5B6F8F;       /* Azul acinzentado - apoio */
+  --color-off-white: #FAFAFA;         /* Branco suave */
+  --color-text-dark: #2C2C2C;         /* Texto principal */
+  --color-text-muted: #6B6B6B;        /* Texto suave */
 }
 
-/* Base style modifications to support a luxury feeling */
 body {
-  background-color: var(--color-slate-deep);
-  color: var(--color-off-white);
+  background-color: var(--color-beige-cream);
+  color: var(--color-text-dark);
   font-family: var(--font-sans);
   overflow-x: hidden;
 }
 
-/* Custom scrollbar for premium look */
+/* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--color-slate-deep);
+  background: var(--color-beige-cream);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-slate-med);
-  border-radius: 4px;
+  background: var(--color-beige-soft);
+  border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-muted-steel);
 }
 
+/* Floating animation for cards */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes float-delayed {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float-delayed 5s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+.animate-float-slow {
+  animation: float-slow 6s ease-in-out infinite;
+  animation-delay: 0.5s;
+}
+
+/* Shimmer effect */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.shimmer-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 3s infinite;
+  pointer-events: none;
+}
+
+/* Infinite carousel */
+@keyframes scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-scroll-left {
+  animation: scroll-left 35s linear infinite;
+}
+
+.animate-scroll-left:hover {
+  animation-play-state: paused;
+}
+
+/* Clinic photos carousel */
+@keyframes scroll-clinic {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-scroll-clinic {
+  animation: scroll-clinic 25s linear infinite;
+}
+
+.animate-scroll-clinic:hover {
+  animation-play-state: paused;
+}
+
+/* Glassmorphism */
+.glass-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+/* Link card hover overlay */
+.link-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.link-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(36, 57, 90, 0.85) 0%, rgba(36, 57, 90, 0.4) 50%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 1;
+}
+
+.link-card:hover::before {
+  opacity: 1;
+}
+
+.link-card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem;
+  transform: translateY(100%);
+  transition: transform 0.4s ease;
+  z-index: 2;
+}
+
+.link-card:hover .link-card-content {
+  transform: translateY(0);
+}
+
+/* Social card hover */
+.social-card {
+  transition: all 0.3s ease;
+}
+
+.social-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(45, 70, 110, 0.15);
+}
