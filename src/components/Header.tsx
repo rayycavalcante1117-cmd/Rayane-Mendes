@@ -76,35 +76,30 @@ export default function Header({ onOpenBooking }: HeaderProps) {
         }`}
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          {/* Logo */}
+          {/* Logo with Name */}
           <div 
             onClick={() => scrollToSection("home")}
             className="flex items-center gap-3 cursor-pointer group"
           >
-            {/* Logo Placeholder */}
+            {/* Logo Image */}
             <div 
+              className="w-10 h-10 rounded-full overflow-hidden transition-all duration-300 flex-shrink-0"
               style={{
-                backgroundColor: isScrolled ? '#DDD3C7' : 'rgba(255,255,255,0.2)', 
-                color: isScrolled ? '#2D466E' : 'white', 
-                display: 'flex',
-                alignItems: 'center', 
-                justifyContent: 'center', 
-                width: '40px', 
-                height: '40px',
-                fontWeight: 'bold', 
-                fontSize: '0.5rem', 
-                letterSpacing: '1px',
-                borderRadius: '50%',
-                border: isScrolled ? '1px solid rgba(45, 70, 110, 0.3)' : '1px solid rgba(255,255,255,0.3)'
+                border: isScrolled ? '2px solid rgba(45, 70, 110, 0.3)' : '2px solid rgba(255,255,255,0.3)',
+                boxShadow: isScrolled ? '0 2px 8px rgba(45, 70, 110, 0.15)' : '0 2px 8px rgba(0,0,0,0.1)'
               }}
             >
-              LOGO
+              <img 
+                src="/images/logo-andressa.jpg" 
+                alt="Logo Andressa Juliana Psicóloga"
+                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+              />
             </div>
             <div>
-              <span className={`font-serif text-lg md:text-xl font-bold tracking-tight uppercase block leading-none transition-colors ${isScrolled ? 'text-text-dark' : 'text-white'}`}>
+              <span className={`font-serif text-lg md:text-xl font-bold tracking-tight uppercase block leading-none transition-colors duration-300 ${isScrolled ? 'text-text-dark' : 'text-white'}`}>
                 Andressa Juliana
               </span>
-              <span className={`text-[9px] md:text-[10px] font-mono tracking-widest uppercase block mt-1 font-semibold transition-colors ${isScrolled ? 'text-text-muted' : 'text-white/70'}`}>
+              <span className={`text-[9px] md:text-[10px] font-mono tracking-widest uppercase block mt-1 font-semibold transition-colors duration-300 ${isScrolled ? 'text-text-muted' : 'text-white/70'}`}>
                 Psicologa Clinica
               </span>
             </div>

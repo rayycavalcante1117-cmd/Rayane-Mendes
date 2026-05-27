@@ -37,27 +37,13 @@ export default function About({ portraitPath }: AboutProps) {
               {/* Outer frames */}
               <div className="absolute inset-0 border border-slate-med/15 rounded-2xl pointer-events-none z-10" />
               
-              {/* Placeholder for photo */}
-              <div 
-                role="img"
-                aria-label="Foto de Andressa Juliana de Oliveira, psicóloga clínica CRP-12/19715, especialista em Terapia Cognitivo-Comportamental"
-                style={{
-                  backgroundColor: '#DDD3C7', 
-                  color: '#2D466E', 
-                  display: 'flex',
-                  alignItems: 'center', 
-                  justifyContent: 'center', 
-                  width: '100%', 
-                  height: '100%',
-                  minHeight: '200px', 
-                  fontWeight: 'bold', 
-                  fontSize: '1.2rem', 
-                  letterSpacing: '2px',
-                  borderRadius: '0.75rem'
-                }}
-              >
-                ANDRESSA JULIANA
-              </div>
+              {/* Professional Portrait Image */}
+              <img 
+                src="/images/portrait-vertical.jpg"
+                alt="Andressa Juliana de Oliveira - Psicóloga Clínica CRP-12/19715, especialista em Terapia Cognitivo-Comportamental"
+                className="w-full h-full object-cover rounded-xl"
+                loading="lazy"
+              />
 
               {/* Caption over photo */}
               <div className="absolute bottom-6 left-6 right-6 p-4 rounded-xl bg-white/95 backdrop-blur-md border border-beige-warm hidden sm:block">

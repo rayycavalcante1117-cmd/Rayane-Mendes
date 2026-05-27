@@ -12,28 +12,28 @@ export default function Hero({ onOpenBooking }: HeroProps) {
       id="home" 
       className="relative min-h-screen pt-28 pb-16 md:pt-36 md:pb-24 flex items-center overflow-hidden"
     >
-      {/* Background Image */}
+      {/* Background Image - Professional positioned on right */}
       <div 
         className="absolute inset-0 z-0"
         style={{
-          backgroundImage: 'url(/images/hero-andressa.jpg)',
+          backgroundImage: 'url(/images/hero-horizontal.jpg)',
           backgroundSize: 'cover',
-          backgroundPosition: 'center 20%',
+          backgroundPosition: 'right center',
           backgroundRepeat: 'no-repeat'
         }}
       />
       
-      {/* Elegant Petroleum Blue Gradient Overlay */}
+      {/* Elegant Dark Blue Gradient Overlay - preserving cinematic feel */}
       <div 
         className="absolute inset-0 pointer-events-none z-[1]"
         style={{
-          background: 'linear-gradient(135deg, rgba(36, 57, 90, 0.92) 0%, rgba(45, 70, 110, 0.85) 40%, rgba(91, 111, 143, 0.75) 70%, rgba(45, 70, 110, 0.8) 100%)'
+          background: 'linear-gradient(to right, rgba(11, 28, 45, 0.95) 0%, rgba(16, 38, 61, 0.9) 30%, rgba(29, 53, 87, 0.75) 55%, rgba(36, 57, 90, 0.5) 75%, rgba(45, 70, 110, 0.3) 100%)'
         }}
       />
       
-      {/* Subtle overlay pattern */}
+      {/* Subtle texture overlay */}
       <div 
-        className="absolute inset-0 opacity-5 pointer-events-none z-[2]" 
+        className="absolute inset-0 opacity-[0.03] pointer-events-none z-[2]" 
         style={{ 
           backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
           backgroundSize: '32px 32px'
@@ -81,11 +81,11 @@ export default function Hero({ onOpenBooking }: HeroProps) {
 
       <div className="max-w-7xl mx-auto px-6 md:px-8 w-full relative z-10">
         
-        {/* Text Block - Centered */}
-        <div className="max-w-3xl mx-auto text-center animate-fade-in">
+        {/* Text Block - Aligned Left with space for photo on right */}
+        <div className="max-w-2xl animate-fade-in">
           {/* Tag Line */}
-          <div className="flex items-center justify-center gap-2 mb-6">
-            <span className="inline-block px-4 py-1.5 bg-white/20 backdrop-blur-sm text-white text-[10px] uppercase tracking-[0.2em] font-bold border border-white/30 rounded-full">
+          <div className="flex items-center gap-2 mb-6">
+            <span className="inline-block px-4 py-1.5 bg-white/15 backdrop-blur-sm text-white text-[10px] uppercase tracking-[0.2em] font-bold border border-white/25 rounded-full">
               Terapia Cognitivo-Comportamental
             </span>
           </div>
@@ -98,15 +98,15 @@ export default function Hero({ onOpenBooking }: HeroProps) {
           </div>
 
           {/* Subtitulo */}
-          <p className="text-lg sm:text-xl text-white/90 font-sans mb-4 leading-relaxed max-w-2xl mx-auto font-medium">
+          <p className="text-lg sm:text-xl text-white/90 font-sans mb-4 leading-relaxed max-w-xl font-medium">
             Chega de se sentir refem da ansiedade, da inseguranca ou de padroes que te travam.
           </p>
-          <p className="text-base text-white/70 font-sans mb-10 leading-relaxed max-w-2xl mx-auto">
+          <p className="text-base text-white/70 font-sans mb-10 leading-relaxed max-w-xl">
             Com a Terapia Cognitivo-Comportamental, voce aprende ferramentas praticas para reduzir sintomas, desenvolver novas habilidades e retomar o controle da sua vida.
           </p>
 
           {/* CTA Button */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="flex flex-col sm:flex-row items-start gap-4">
             <button
               onClick={onOpenBooking}
               className="px-10 py-5 bg-white text-slate-deep border-2 border-white rounded-full text-xs font-mono tracking-widest uppercase hover:bg-beige-cream hover:border-beige-cream hover:shadow-2xl transition-all duration-300 flex items-center justify-center gap-2 group cursor-pointer font-bold shimmer-btn"
@@ -116,7 +116,7 @@ export default function Hero({ onOpenBooking }: HeroProps) {
           </div>
 
           {/* Trust Indicators */}
-          <div className="mt-14 pt-8 border-t border-white/20 grid grid-cols-2 md:grid-cols-3 gap-6 max-w-2xl mx-auto">
+          <div className="mt-14 pt-8 border-t border-white/20 grid grid-cols-2 md:grid-cols-3 gap-6 max-w-xl">
             <div>
               <span className="text-2xl font-serif text-white font-bold block">+500</span>
               <span className="text-[10px] text-white/60 font-mono uppercase tracking-widest block mt-1">
