@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { Sparkles, Heart } from "lucide-react";
+import { Sparkles, Heart, Video } from "lucide-react";
 
 interface HeroProps {
   onOpenBooking: () => void;
@@ -41,7 +41,7 @@ export default function Hero({ onOpenBooking, bgImagePath }: HeroProps) {
       id="home" 
       className="relative min-h-screen pt-28 pb-16 md:pt-36 md:pb-24 flex items-center overflow-hidden"
     >
-      {/* Gradient background - azul para cinza claro */}
+      {/* Gradient background */}
       <div 
         className="absolute inset-0 pointer-events-none z-0"
         style={{
@@ -58,9 +58,9 @@ export default function Hero({ onOpenBooking, bgImagePath }: HeroProps) {
         }} 
       />
 
-      {/* Floating Cards - Animacao continua */}
+      {/* Floating Cards - Glassmorphism Style */}
       <div className="absolute top-32 right-8 md:right-16 lg:right-24 z-20 animate-float hidden md:block">
-        <div className="px-5 py-3 bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl border border-white/50">
+        <div className="glass-card px-5 py-3 rounded-2xl shadow-xl">
           <div className="flex items-center gap-2">
             <Sparkles className="w-4 h-4 text-slate-med" />
             <span className="text-xs font-mono text-slate-deep font-bold uppercase tracking-wider">Atendimento Personalizado</span>
@@ -68,11 +68,21 @@ export default function Hero({ onOpenBooking, bgImagePath }: HeroProps) {
         </div>
       </div>
 
-      <div className="absolute bottom-40 right-12 md:right-32 lg:right-48 z-20 animate-float-delayed hidden md:block">
-        <div className="px-5 py-3 bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl border border-white/50">
+      <div className="absolute bottom-48 right-12 md:right-32 lg:right-48 z-20 animate-float-delayed hidden md:block">
+        <div className="glass-card px-5 py-3 rounded-2xl shadow-xl">
           <div className="flex items-center gap-2">
             <Heart className="w-4 h-4 text-slate-med" />
             <span className="text-xs font-mono text-slate-deep font-bold uppercase tracking-wider">Ambiente Acolhedor e Seguro</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Card Modalidade - Flutuante com Glassmorphism */}
+      <div className="absolute bottom-32 left-8 md:left-16 lg:left-24 z-20 animate-float-slow hidden md:block">
+        <div className="glass-card px-5 py-3 rounded-2xl shadow-xl">
+          <div className="flex items-center gap-2">
+            <Video className="w-4 h-4 text-slate-med" />
+            <span className="text-xs font-mono text-slate-deep font-bold uppercase tracking-wider">Online & Presencial</span>
           </div>
         </div>
       </div>
@@ -96,7 +106,7 @@ export default function Hero({ onOpenBooking, bgImagePath }: HeroProps) {
             </span>
           </motion.div>
 
-          {/* Headline principal */}
+          {/* Headline */}
           <div className="overflow-hidden mb-6">
             <motion.h1 
               variants={textRevealVariants}
@@ -106,7 +116,7 @@ export default function Hero({ onOpenBooking, bgImagePath }: HeroProps) {
             </motion.h1>
           </div>
 
-          {/* Subtítulo com copy mais forte */}
+          {/* Subtitulo */}
           <motion.p 
             variants={itemVariants}
             className="text-lg sm:text-xl text-white/90 font-sans mb-4 leading-relaxed max-w-xl font-medium"
@@ -120,20 +130,20 @@ export default function Hero({ onOpenBooking, bgImagePath }: HeroProps) {
             Com a Terapia Cognitivo-Comportamental, voce aprende ferramentas praticas para reduzir sintomas, desenvolver novas habilidades e retomar o controle da sua vida.
           </motion.p>
 
-          {/* CTA Button - Copy mais forte com efeito visual */}
+          {/* CTA Button */}
           <motion.div 
             variants={itemVariants}
             className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4"
           >
             <button
               onClick={onOpenBooking}
-              className="px-10 py-5 bg-white text-slate-deep border-2 border-white rounded-full text-xs font-mono tracking-widest uppercase hover:bg-beige-warm hover:border-beige-warm hover:shadow-2xl transition-all duration-300 flex items-center justify-center gap-2 group cursor-pointer font-bold shimmer-btn btn-glow"
+              className="px-10 py-5 bg-white text-slate-deep border-2 border-white rounded-full text-xs font-mono tracking-widest uppercase hover:bg-beige-cream hover:border-beige-cream hover:shadow-2xl transition-all duration-300 flex items-center justify-center gap-2 group cursor-pointer font-bold shimmer-btn"
             >
               Quero comecar minha transformacao
             </button>
           </motion.div>
 
-          {/* Trust Indicators - Simplificado */}
+          {/* Trust Indicators */}
           <motion.div 
             variants={itemVariants}
             className="mt-14 pt-8 border-t border-white/20 grid grid-cols-2 md:grid-cols-3 gap-6"
@@ -170,9 +180,8 @@ export default function Hero({ onOpenBooking, bgImagePath }: HeroProps) {
           {/* Decorative Backplate */}
           <div className="absolute -inset-4 border border-white/20 rounded-2xl pointer-events-none z-0 scale-95 md:scale-100" />
           
-          {/* Main Frame - Placeholder for banner */}
+          {/* Main Frame - Placeholder */}
           <div className="relative w-full max-w-sm sm:max-w-md lg:max-w-full aspect-[4/5] rounded-xl overflow-hidden shadow-2xl z-10 border-4 border-white/30">
-            {/* Placeholder Banner */}
             <div 
               style={{
                 backgroundColor: '#DDD3C7', 
@@ -191,7 +200,6 @@ export default function Hero({ onOpenBooking, bgImagePath }: HeroProps) {
               BANNER
             </div>
             
-            {/* Elegant overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-slate-deep/50 via-transparent to-transparent pointer-events-none" />
           </div>
 

@@ -17,7 +17,6 @@ import { Instagram, Shield } from "lucide-react";
 export default function App() {
   const [isBookingOpen, setIsBookingOpen] = useState(false);
 
-  // Placeholder paths (to be replaced with actual images)
   const portraitPath = "";
   const bgImagePath = "";
 
@@ -26,32 +25,31 @@ export default function App() {
   };
 
   return (
-    <div className="relative min-h-screen bg-beige-warm text-text-dark select-none">
-      {/* 1. Header component */}
+    <div className="relative min-h-screen bg-beige-cream text-text-dark select-none">
+      {/* 1. Header */}
       <Header onOpenBooking={toggleBooking} />
 
-      {/* 2. Hero Section */}
+      {/* 2. Hero */}
       <Hero onOpenBooking={toggleBooking} bgImagePath={bgImagePath} />
 
-      {/* 3. Servicos Section */}
+      {/* 3. Servicos - fundo bege */}
       <Methodology />
 
-      {/* 4. About (Quem sou) Section - fundo branco para contraste */}
+      {/* 4. Sobre - fundo branco */}
       <About portraitPath={portraitPath} />
 
-      {/* 5. Depoimentos Section - fundo branco para contraste */}
+      {/* 5. Depoimentos - fundo creme */}
       <SocialProof />
 
-      {/* 6. Contact Section */}
+      {/* 6. Contato - fundo creme */}
       <Contact />
 
-      {/* 7. Footer Block */}
+      {/* 7. Footer */}
       <footer className="bg-slate-deep text-white py-16 px-6 md:px-8 position-relative z-10">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12">
-          {/* Logo Brand Col */}
+          {/* Logo Brand */}
           <div className="md:col-span-5 space-y-4 text-left">
             <div className="flex items-center gap-2">
-              {/* Logo Placeholder */}
               <div 
                 style={{
                   backgroundColor: 'rgba(255,255,255,0.1)', 
@@ -85,7 +83,7 @@ export default function App() {
             </p>
           </div>
 
-          {/* Quick links Col */}
+          {/* Quick links */}
           <div className="md:col-span-3 text-left space-y-4">
             <h4 className="text-xs font-mono text-white/70 uppercase tracking-wider font-bold">Menu</h4>
             <div className="flex flex-col gap-2.5 text-xs text-white/60 font-sans">
@@ -97,12 +95,17 @@ export default function App() {
             </div>
           </div>
 
-          {/* Contact Col */}
+          {/* Contact */}
           <div className="md:col-span-4 text-left space-y-4">
             <h4 className="text-xs font-mono text-white/70 uppercase tracking-wider font-bold">Contato</h4>
             <div className="text-xs text-white/60 font-sans space-y-3">
               <p>andressajuliana.psi@gmail.com</p>
               <p>CRP-12/19715</p>
+              <p className="text-[10px] text-white/40">
+                Edificio Riviera Concept<br />
+                Av. Osvaldo Reis, 3385 - Sala 1013<br />
+                Praia Brava, Itajai - SC
+              </p>
               
               <div className="flex gap-4 pt-2">
                 <a 
@@ -141,7 +144,7 @@ export default function App() {
           </div>
         </div>
 
-        {/* Legal Disclaimer */}
+        {/* Legal */}
         <div className="max-w-7xl mx-auto mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px] font-mono uppercase tracking-widest text-white/30 text-center sm:text-left">
           <div className="flex items-center gap-1.5">
             <Shield className="w-3.5 h-3.5 text-white/50" />
@@ -153,10 +156,10 @@ export default function App() {
         </div>
       </footer>
 
-      {/* 8. WhatsApp Floating Button */}
+      {/* WhatsApp Button */}
       <WhatsAppButton />
 
-      {/* 9. Booking Modal */}
+      {/* Booking Modal */}
       <BookingModal isOpen={isBookingOpen} onClose={toggleBooking} />
     </div>
   );
